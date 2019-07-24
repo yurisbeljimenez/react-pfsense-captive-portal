@@ -1,0 +1,21 @@
+@import '@material/react-layout-grid/index.scss';
+@import '@material/react-text-field/index.scss';
+@import '@material/react-button/index.scss';
+
+.text-center {
+  text-align: center;
+}
+
+.mdc-text-field {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.mdc-button {
+  width: 100%;
+  margin: 0.5rem 0;
+  height: auto !important;
+  padding: 1.5rem 0 !important;
+  @include mdc-button-container-fill-color(black);
+  @include mdc-button-horizontal-padding(5rem);
+}

@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import './index.scss';
+import '@material/react-layout-grid/index.scss';
+import '@material/react-typography/index.scss';
+import '@material/react-text-field/index.scss';
+import '@material/react-button/index.scss';
+import '@material/react-dialog/index.scss';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
