@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loading from './Loading';
 
@@ -8,27 +8,58 @@ const Logout = lazy(() => import('./routes/Logout'));
 const Progress = lazy(() => import('./routes/Progress'));
 const NotFound = lazy(() => import('./routes/NotFound'));
 
-function App() {
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
-  const [voucher, setVoucher] = useState('');
-  const [logout_id, setLogoutId] = useState('');
-  const [zone, setZone] = useState('');
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth_user: '',
+      auth_pass: '',
+      auth_voucher: '',
+      timecredit: ''
+    }
+    this.baseState = this.state;
 
-  return (
-    <Router>
-      <Suspense fallback={<Loading />}>
-        <Switch>
-          <Route exact path="/" component={Auth} />
-          <Route path="/error" component={Error} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/progress" component={Progress} />
-          <Route component={NotFound} />
-        </Switch>
-      </Suspense>
-    </Router>
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.resetForm = this.resetForm.bind(this);
+  }
 
-  )
+  handleInputChange(event) {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  resetForm(event) {
+    event.preventDefault();
+    this.setState(this.baseState);
+
+  }
+
+  render() {
+    return (
+      <Router>
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route exact path="/" render={() => (
+              <Auth
+                auth_user={this.state.auth_user}
+                auth_pass={this.state.auth_pass}
+                auth_voucher={this.state.auth_voucher}
+                handleInputChange={this.handleInputChange}
+                resetForm={this.resetForm} />
+            )} />
+            <Route path="/error" component={Error} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/progress" component={Progress} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </Router>
+    )
+  }
 };
 
 export default App;
