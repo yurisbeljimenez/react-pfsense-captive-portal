@@ -15,25 +15,25 @@ const Auth = (props) => {
             .then(res => {
                 console.log('Complete Response', res);
                 console.log('Response Data', res.data);
-            }).catch((error) => console.error(error))
+            })
+            .catch((error) => console.error(error))
     }
 
     const onFormSubmit = (e) => {
         e.preventDefault();
         console.log("Sending authetication to server")
-        if (auth_user !== '' && auth_pass !== '') {
-            const data = {
-                auth_user: auth_user,
-                auth_pass: auth_pass
-            }
-            console.log(data);
-        } else {
-            const data = {
-                auth_voucher: auth_voucher
-            }
-            console.log(data);
-        }
-        // history.push('/progress');
+        console.log({ auth_user: auth_user, auth_pass: auth_pass, auth_voucher: auth_voucher })
+        axios.post('$PORTAL_ACTION$', {
+            auth_user: auth_user,
+            auth_pass: auth_pass,
+            auth_voucher: auth_voucher
+        })
+            .then(res => {
+                console.log('Complete Response', res);
+                console.log('Response Data', res.data);
+                history.push('/progress');
+            })
+            .catch((error) => console.error(error))
     }
 
     return (
@@ -42,9 +42,9 @@ const Auth = (props) => {
                 <Cell>
                     <h1 className="text-center">Authenticate</h1>
                     <p>Enter your username and password and click <b>Authenticate</b> to access the Internet.</p>
-                    <form method="post" onSubmit={onFormSubmit} action="$PORTAL_ACTION$">
+                    <form onSubmit={onFormSubmit}>
                         <TextField
-                            label='User'
+                            label='Username'
                             outlined
                         ><Input
                                 name="auth_user"
