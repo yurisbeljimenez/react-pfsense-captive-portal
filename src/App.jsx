@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loading from './Loading';
-import DialogMessage from './DialogMessage';
+import SnackbarMessage from './SnackbarMessage';
 
 const Auth = lazy(() => import('./routes/Auth'));
 const Error = lazy(() => import('./routes/Error'));
@@ -16,8 +16,7 @@ class App extends Component {
       auth_user: '',
       auth_pass: '',
       auth_voucher: '',
-      timecredit: 5356,
-      isDialogOpen: true
+      timecredit: 5356
     }
     this.baseState = this.state;
 
@@ -61,7 +60,7 @@ class App extends Component {
             </Switch>
           </Suspense>
         </Router>
-        {this.state.isDialogOpen ? <DialogMessage isOpen={this.state.isDialogOpen} timecredit={this.state.timecredit} /> : null}
+        {this.state.timecredit ? <SnackbarMessage timecredit={this.state.timecredit} /> : null}
       </Fragment>
     )
   }
