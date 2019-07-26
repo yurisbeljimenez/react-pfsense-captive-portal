@@ -6,7 +6,16 @@ import TextField, { Input } from '@material/react-text-field';
 import Button from '@material/react-button';
 
 const Auth = (props) => {
-    const { auth_user, auth_pass, auth_voucher, handleInputChange, resetForm, history } = props;
+    const {
+        auth_user,
+        auth_pass,
+        auth_voucher,
+        handleInputChange,
+        resetForm,
+        history } = props;
+
+    const hideVoucher = auth_user || auth_pass ? { display: 'none' } : {};
+    const hideUserAuth = auth_voucher ? { display: 'none' } : {};
 
     const checkVoucher = (e) => {
         e.preventDefault();
@@ -39,12 +48,13 @@ const Auth = (props) => {
     return (
         <Grid>
             <Row>
-                <Cell>
+                <Cell columns={12}>
                     <h1 className="text-center">Authenticate</h1>
-                    <p>Enter your username and password and click <b>Authenticate</b> to access the Internet.</p>
+                    <p>Enter your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</p>
                     <form onSubmit={onFormSubmit}>
                         <TextField
                             label='Username'
+                            style={hideUserAuth}
                             outlined
                         ><Input
                                 name="auth_user"
@@ -56,6 +66,7 @@ const Auth = (props) => {
                         </TextField>
                         <TextField
                             label='Password'
+                            style={hideUserAuth}
                             outlined
                         ><Input
                                 name="auth_pass"
@@ -67,6 +78,7 @@ const Auth = (props) => {
                         </TextField>
                         <TextField
                             label='Voucher'
+                            style={hideVoucher}
                             outlined
                         ><Input
                                 name="auth_voucher"
@@ -80,7 +92,7 @@ const Auth = (props) => {
                         <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
 
                         <Button type='submit' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Authenticate</Button>
-                        <Button type='button' disabled={auth_voucher === ''} onClick={checkVoucher} raised>Check Voucher</Button>
+                        <Button type='button' disabled={auth_voucher === ''} onClick={checkVoucher} raised style={hideVoucher}>Check Voucher</Button>
                         <Button type='reset' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} onClick={resetForm} raised>Reset form</Button>
                     </form>
                 </Cell>
