@@ -4,7 +4,7 @@
 
 :root {
   --mdc-theme-primary: #3A4250;
-  --mdc-theme-secondary: #C14820;
+  --mdc-theme-secondary: rgba(213, 161, 52);
 }
 
 code {
@@ -19,7 +19,24 @@ code {
 }
 
 .counter {
-  font-size: 600%;
+  font-size: 5.2rem;
+  font-weight: 900;
+  color: var(--mdc-theme-secondary);
+
+  .minutes::after,
+  .seconds::after {
+    font-size: 2rem;
+    position: absolute;
+    transform: translateY(0.7rem);
+  }
+
+  .minutes::after {
+    content: 'm';
+  }
+
+  .seconds::after {
+    content: 's';
+  }
 }
 
 .mdc-layout-grid {

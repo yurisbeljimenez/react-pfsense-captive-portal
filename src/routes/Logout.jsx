@@ -32,7 +32,7 @@ const Logout = (props) => {
                     <img src={Math.random() >= 0.5 ? illustration : illustration02} alt="Navigation illustration" style={imageStyles} />
                     <h1 className="text-center">Welcome back</h1>
                     <p className="text-center">Browse and get lost in the interet; come back here when you're
-                    ready to walk away.</p>
+                    ready to walk away and end your session.</p>
                     <Button onClick={handleDisconnect} raised>Disconnect</Button>
                 </Cell>
             </Row>

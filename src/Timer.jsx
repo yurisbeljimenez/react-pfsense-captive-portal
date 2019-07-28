@@ -4,18 +4,23 @@ import { Cell, Row } from '@material/react-layout-grid';
 const Timer = (props) => {
     const { time } = props;
 
+
     const formatTime = (time) => {
-        let seconds = time % 60;
         let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
         minutes = minutes.toString().length === 1 ? "0" + minutes : minutes;
         seconds = seconds.toString().length === 1 ? "0" + seconds : seconds;
-        return minutes + ':' + seconds;
+        return (
+            <h1 className="text-center counter">
+                <span className="minutes">{minutes}</span>&nbsp;&nbsp;:&nbsp;<span className="seconds">{seconds}</span>
+            </h1>
+        )
     }
 
     return (
         <Row>
             <Cell columns={12}>
-                <h1 className="text-center counter">{formatTime(time)}</h1>
+                {formatTime(time)}
             </Cell>
         </Row>
     )

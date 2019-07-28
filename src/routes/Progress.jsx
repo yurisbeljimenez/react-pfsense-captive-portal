@@ -4,11 +4,12 @@ import { withRouter } from 'react-router-dom';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from '@material/react-button';
 import Timer from '../Timer';
+import useInterval from '../useInterval';
 
 
 const Progress = (props) => {
     const { history } = props;
-    const [time, setTime] = useState(300);
+    const [time, setTime] = useState(5);
 
     useEffect(() => {
         axios.post('../server/get_timer.php')
@@ -18,10 +19,18 @@ const Progress = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                // TO-DO: Uncomment for pproduction.
-                // history.push('/error');
-            })
-    })
+                history.push('/error');
+            });
+    }, [history])
+
+
+    useInterval(() => {
+        if (time > 0) {
+            setTime(time - 1)
+        } else {
+            history.push('/');
+        }
+    }, 1000);
 
     const handleDisconnect = (e) => {
         e.preventDefault();
