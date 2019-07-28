@@ -1,30 +1,43 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
-import { Input } from "@material/react-text-field";
 import { Button } from "@material/react-button";
+import illustration from '../images/navigation_black_hole.png';
+import illustration02 from '../images/secure_navigation.jpg';
 
 
 const Logout = (props) => {
-    const { sessionid, zone } = props;
+    const { history } = props;
+
+    const imageStyles = {
+        width: '100%'
+    }
+
     const handleDisconnect = (e) => {
         e.preventDefault();
-        console.log('Disconnecting the user');
+
+        axios.post('../server/logout.php')
+            .then(res => console.log(res.data))
+            .catch((error) => {
+                console.error(error);
+                history.push('/error');
+            })
     }
+
     return (
         <Grid>
             <Row>
-                <Cell>
-                    <form method="POST" action="<?=$logouturl;?>">
-                        <Input name="logout_id" type="hidden" value={sessionid} />
-                        <Input name="zone" type="hidden" value={zone} />
-                        {/* <Input name="logout_id" type="hidden" value="<?=$sessionid;?>" /> */}
-                        {/* <Input name="zone" type="hidden" value={"<?=$cpzone;?>"} /> */}
-                        <Button onClick={handleDisconnect} raised>Disconnect</Button>
-                    </form>
+                <Cell columns={12}>
+                    <img src={Math.random() >= 0.5 ? illustration : illustration02} alt="Navigation illustration" style={imageStyles} />
+                    <h1 className="text-center">Welcome back</h1>
+                    <p className="text-center">Browse and get lost in the interet; come back here when you're
+                    ready to walk away.</p>
+                    <Button onClick={handleDisconnect} raised>Disconnect</Button>
                 </Cell>
             </Row>
         </Grid>
     )
 }
 
-export default Logout;
+export default withRouter(Logout);

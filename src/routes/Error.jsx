@@ -1,13 +1,28 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
+import { Button } from '@material/react-button';
+import illustration from '../images/no_internet_illustration.png';
+import illustration02 from '../images/no_internet_illustration-02.png';
 
+const Error = (props) => {
+    const { history } = props;
+    const imageStyles = {
+        width: '100%'
+    }
 
-export default function Error() {
     return (
         <Grid>
             <Row>
-                <Cell><h1>This is Error</h1></Cell>
+                <Cell columns={12}>
+                    <img style={imageStyles} src={Math.random() >= 0.5 ? illustration : illustration02} alt="No internet ilustration" />
+                    <h1 className='text-center'>Oops, something <br />went wrong</h1>
+                    <p className="text-center">Try again, or check with the admin is this message keeps coming back.</p>
+                    <Button raised onClick={() => history.goBack()}>Try Again</Button>
+                </Cell>
             </Row>
         </Grid>
     )
 }
+
+export default withRouter(Error);

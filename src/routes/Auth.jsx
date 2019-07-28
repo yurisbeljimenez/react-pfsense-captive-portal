@@ -11,38 +11,49 @@ const Auth = (props) => {
         auth_pass,
         auth_voucher,
         handleInputChange,
+        handleTimecredit,
         resetForm,
         history } = props;
+
+    // DOM reference to the form. Use to create the form data.
+    let form;
 
     const hideVoucher = auth_user || auth_pass ? { display: 'none' } : {};
     const hideUserAuth = auth_voucher ? { display: 'none' } : {};
 
+    // Request voucher timecredit and update the global state with the value, set it to an 
+    // empty string again after 5s to be hable to call the Snackbar again.
     const checkVoucher = (e) => {
         e.preventDefault();
-        console.log("Checking navigation credit")
-        axios.post('../server/check_voucher.php', { voucher: auth_voucher })
+        let formData = new FormData(form);
+        axios.post('../server/check_voucher.php', formData)
             .then(res => {
-                console.log('Complete Response', res);
                 console.log('Response Data', res.data);
+                handleTimecredit(res.data);
+                setTimeout(() => {
+                    handleTimecredit('');
+                }, 5000);
             })
-            .catch((error) => console.error(error))
+            .catch((error) => {
+                console.error(error);
+                history.push('/error');
+            })
     }
 
+    // Send the authetication form data to the server for authentication and redirect to the
+    // Progress component on success
     const onFormSubmit = (e) => {
         e.preventDefault();
-        console.log("Sending authetication to server")
-        console.log({ auth_user: auth_user, auth_pass: auth_pass, auth_voucher: auth_voucher })
-        axios.post('$PORTAL_ACTION$', {
-            auth_user: auth_user,
-            auth_pass: auth_pass,
-            auth_voucher: auth_voucher
-        })
+        let formData = new FormData(form);
+        axios.post('$PORTAL_ACTION$', formData)
             .then(res => {
-                console.log('Complete Response', res);
                 console.log('Response Data', res.data);
                 history.push('/progress');
             })
-            .catch((error) => console.error(error))
+            .catch((error) => {
+                console.error(error);
+                history.push('/error');
+            })
     }
 
     return (
@@ -51,7 +62,7 @@ const Auth = (props) => {
                 <Cell columns={12}>
                     <h1 className="text-center">Authenticate</h1>
                     <p>Enter your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</p>
-                    <form onSubmit={onFormSubmit}>
+                    <form onSubmit={onFormSubmit} ref={el => (form = el)}>
                         <TextField
                             label='Username'
                             style={hideUserAuth}

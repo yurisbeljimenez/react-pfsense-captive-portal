@@ -16,11 +16,12 @@ class App extends Component {
       auth_user: '',
       auth_pass: '',
       auth_voucher: '',
-      timecredit: 5356
+      timecredit: ''
     }
     this.baseState = this.state;
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleTimecredit = this.handleTimecredit.bind(this);
     this.resetForm = this.resetForm.bind(this);
   }
 
@@ -31,6 +32,10 @@ class App extends Component {
     this.setState({
       [name]: value
     });
+  }
+
+  handleTimecredit(value) {
+    this.setState({ timecredit: value })
   }
 
   resetForm(event) {
@@ -51,6 +56,7 @@ class App extends Component {
                   auth_pass={this.state.auth_pass}
                   auth_voucher={this.state.auth_voucher}
                   handleInputChange={this.handleInputChange}
+                  handleTimecredit={this.handleTimecredit}
                   resetForm={this.resetForm} />
               )} />
               <Route path="/error" component={Error} />
