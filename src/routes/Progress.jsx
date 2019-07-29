@@ -9,7 +9,7 @@ import useInterval from '../useInterval';
 
 const Progress = (props) => {
     const { history } = props;
-    const [time, setTime] = useState(5);
+    const [time, setTime] = useState(0);
 
     useEffect(() => {
         axios.post('../server/get_timer.php')

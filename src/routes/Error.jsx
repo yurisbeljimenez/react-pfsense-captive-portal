@@ -7,15 +7,12 @@ import illustration02 from '../images/no_internet_illustration-02.png';
 
 const Error = (props) => {
     const { history } = props;
-    const imageStyles = {
-        width: '100%'
-    }
 
     return (
         <Grid>
             <Row>
                 <Cell columns={12}>
-                    <img style={imageStyles} src={Math.random() >= 0.5 ? illustration : illustration02} alt="No internet ilustration" />
+                    <img src={Math.random() >= 0.5 ? illustration : illustration02} alt="No internet ilustration" />
                     <h1 className='text-center'>Oops, something <br />went wrong</h1>
                     <p className="text-center">Try again, or check with the admin is this message keeps coming back.</p>
                     <Button raised onClick={() => history.goBack()}>Try Again</Button>
