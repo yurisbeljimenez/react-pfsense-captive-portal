@@ -7,7 +7,8 @@ import useInterval from '../useInterval';
 
 
 const Progress = (props) => {
-    const [time, setTime] = useState(154);
+    const { updateView } = props;
+    const [time, setTime] = useState(5);
 
     useEffect(() => {
         axios.post('../server/get_timer.php')
@@ -17,25 +18,29 @@ const Progress = (props) => {
             })
             .catch((error) => {
                 console.error(error);
+                updateView('/error');
             });
-    })
+    }, [updateView])
 
 
     useInterval(() => {
         if (time > 0) {
             setTime(time - 1)
         }
-        // To-DO: Else navigate to Auth
+        updateView('');
     }, 1000);
 
     const handleDisconnect = (e) => {
         e.preventDefault();
 
         axios.post('../server/logout.php')
-            .then(res => console.log(res.data))
+            .then(res => {
+                console.log(res.data)
+                updateView('');
+            })
             .catch((error) => {
                 console.error(error);
-
+                updateView('/error')
             })
     }
 
@@ -44,6 +49,7 @@ const Progress = (props) => {
             <Row>
                 <Cell columns={12}>
                     <Timer time={time} />
+                    <h1 className="text-center">Disconnection Countdown</h1>
                     <p className="text-center">The navigation session will be disabled when the timer counts to cero.</p>
                     <Button onClick={handleDisconnect} raised>Disconnect</Button>
                 </Cell>

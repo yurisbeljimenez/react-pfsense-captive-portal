@@ -11,7 +11,8 @@ const Auth = (props) => {
         auth_voucher,
         handleInputChange,
         handleTimecredit,
-        resetForm
+        resetForm,
+        updateView
     } = props;
 
     // DOM reference to the form. Use to create the form data.
@@ -35,7 +36,7 @@ const Auth = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-
+                updateView('/error')
             })
     }
 
@@ -46,11 +47,14 @@ const Auth = (props) => {
         let formData = new FormData(form);
         axios.post('$PORTAL_ACTION$', formData)
             .then(res => {
+                // TO-DO: Check type of response data and if user send them to logout and if 
+                // timecredit send them to progress
                 console.log('Response Data', res.data);
+                updateView('/progress')
             })
             .catch((error) => {
                 console.error(error);
-
+                updateView('/error');
             })
     }
 

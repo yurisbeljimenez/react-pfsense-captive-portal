@@ -14,11 +14,12 @@ class App extends Component {
       auth_pass: '',
       auth_voucher: '',
       timecredit: '',
-      active_view: '/error'
+      active_view: '/progress'
     }
     this.baseState = this.state;
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleUpdateView = this.handleUpdateView.bind(this);
     this.handleTimecredit = this.handleTimecredit.bind(this);
     this.resetForm = this.resetForm.bind(this);
   }
@@ -32,6 +33,10 @@ class App extends Component {
     });
   }
 
+  handleUpdateView(view) {
+    this.setState({ active_view: view });
+  }
+
   handleTimecredit(value) {
     this.setState({ timecredit: value })
   }
@@ -39,24 +44,27 @@ class App extends Component {
   resetForm(event) {
     event.preventDefault();
     this.setState(this.baseState);
-
   }
 
   render() {
     if (this.state.active_view === '/progress') {
-      return (<Suspense fallback={<Loading />}>
-        <Progress />
-      </Suspense>)
-    } else if (this.state.active_view === '/Logout') {
       return (
         <Suspense fallback={<Loading />}>
-          <Logout />
-        </Suspense>)
+          <Progress updateView={() => this.handleUpdateView} />
+        </Suspense>
+      )
+    } else if (this.state.active_view === '/logout') {
+      return (
+        <Suspense fallback={<Loading />}>
+          <Logout updateView={() => this.handleUpdateView} />
+        </Suspense>
+      )
     } else if (this.state.active_view === '/error') {
       return (
         <Suspense fallback={<Loading />}>
-          <Error />
-        </Suspense>)
+          <Error updateView={() => this.handleUpdateView} />
+        </Suspense>
+      )
     }
 
     return (

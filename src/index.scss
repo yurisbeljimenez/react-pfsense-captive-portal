@@ -3,15 +3,15 @@
 @import '@material/react-button/index.scss';
 
 :root {
-  --mdc-theme-primary: #3A4250;
+  --mdc-theme-primary: #3a4250;
   --mdc-theme-secondary: rgba(213, 161, 52);
 }
 
 code {
-  background-color: rgba(27, 31, 35, .05);
+  background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
   margin: 0;
-  padding: .2em .4em;
+  padding: 0.2em 0.4em;
 }
 
 img {
@@ -31,15 +31,15 @@ img {
   .seconds::after {
     font-size: 2rem;
     position: absolute;
-    transform: translateY(0.7rem);
+    transform: translateY(1.25rem);
   }
 
   .minutes::after {
-    content: 'm';
+    content: 'M';
   }
 
   .seconds::after {
-    content: 's';
+    content: 'S';
   }
 }
 
