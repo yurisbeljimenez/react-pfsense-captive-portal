@@ -15,11 +15,11 @@ const Logout = (props) => {
         axios.post('../server/logout.php')
             .then(res => {
                 console.log(res.data)
-                updateView('')
+                updateView('');
             })
             .catch((error) => {
                 console.error(error);
-                updateView('/error')
+                updateView('/error');
             })
     }
 

@@ -14,7 +14,7 @@ class App extends Component {
       auth_pass: '',
       auth_voucher: '',
       timecredit: '',
-      active_view: '/progress'
+      active_view: '/error'
     }
     this.baseState = this.state;
 

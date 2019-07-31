@@ -50,7 +50,7 @@ const Auth = (props) => {
                 // TO-DO: Check type of response data and if user send them to logout and if 
                 // timecredit send them to progress
                 console.log('Response Data', res.data);
-                updateView('/progress')
+                updateView('/progress');
             })
             .catch((error) => {
                 console.error(error);

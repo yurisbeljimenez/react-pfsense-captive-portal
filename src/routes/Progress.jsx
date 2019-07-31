@@ -26,8 +26,9 @@ const Progress = (props) => {
     useInterval(() => {
         if (time > 0) {
             setTime(time - 1)
+        } else {
+            updateView('');
         }
-        updateView('');
     }, 1000);
 
     const handleDisconnect = (e) => {
