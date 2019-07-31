@@ -7,7 +7,6 @@ import illustration02 from '../images/secure_navigation.jpg';
 
 
 const Logout = (props) => {
-    const { history } = props;
 
     const handleDisconnect = (e) => {
         e.preventDefault();
@@ -16,7 +15,7 @@ const Logout = (props) => {
             .then(res => console.log(res.data))
             .catch((error) => {
                 console.error(error);
-                history.push('/error');
+
             })
     }
 

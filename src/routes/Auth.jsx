@@ -11,8 +11,8 @@ const Auth = (props) => {
         auth_voucher,
         handleInputChange,
         handleTimecredit,
-        resetForm,
-        history } = props;
+        resetForm
+    } = props;
 
     // DOM reference to the form. Use to create the form data.
     let form;
@@ -35,7 +35,7 @@ const Auth = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                history.push('/error');
+
             })
     }
 
@@ -47,11 +47,10 @@ const Auth = (props) => {
         axios.post('$PORTAL_ACTION$', formData)
             .then(res => {
                 console.log('Response Data', res.data);
-                history.push('/progress');
             })
             .catch((error) => {
                 console.error(error);
-                history.push('/error');
+
             })
     }
 

@@ -7,8 +7,7 @@ import useInterval from '../useInterval';
 
 
 const Progress = (props) => {
-    const { history } = props;
-    const [time, setTime] = useState(0);
+    const [time, setTime] = useState(154);
 
     useEffect(() => {
         axios.post('../server/get_timer.php')
@@ -18,17 +17,15 @@ const Progress = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                history.push('/error');
             });
-    }, [history])
+    })
 
 
     useInterval(() => {
         if (time > 0) {
             setTime(time - 1)
-        } else {
-            history.push('/');
         }
+        // To-DO: Else navigate to Auth
     }, 1000);
 
     const handleDisconnect = (e) => {
@@ -38,7 +35,7 @@ const Progress = (props) => {
             .then(res => console.log(res.data))
             .catch((error) => {
                 console.error(error);
-                history.push('/error');
+
             })
     }
 

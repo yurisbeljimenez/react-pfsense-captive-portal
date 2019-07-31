@@ -1,12 +1,10 @@
 import React, { Suspense, lazy, Component } from 'react';
 import Loading from './Loading';
-import SnackbarMessage from './SnackbarMessage';
 
 const Auth = lazy(() => import('./routes/Auth'));
 const Error = lazy(() => import('./routes/Error'));
 const Logout = lazy(() => import('./routes/Logout'));
 const Progress = lazy(() => import('./routes/Progress'));
-const NotFound = lazy(() => import('./routes/NotFound'));
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +13,8 @@ class App extends Component {
       auth_user: '',
       auth_pass: '',
       auth_voucher: '',
-      timecredit: ''
+      timecredit: '',
+      active_view: '/error'
     }
     this.baseState = this.state;
 
@@ -44,6 +43,22 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.active_view === '/progress') {
+      return (<Suspense fallback={<Loading />}>
+        <Progress />
+      </Suspense>)
+    } else if (this.state.active_view === '/Logout') {
+      return (
+        <Suspense fallback={<Loading />}>
+          <Logout />
+        </Suspense>)
+    } else if (this.state.active_view === '/error') {
+      return (
+        <Suspense fallback={<Loading />}>
+          <Error />
+        </Suspense>)
+    }
+
     return (
       <Suspense fallback={<Loading />}>
         <Auth
