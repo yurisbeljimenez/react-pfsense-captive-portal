@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from '@material/react-button';
 import Timer from '../Timer';
@@ -56,4 +55,4 @@ const Progress = (props) => {
     )
 }
 
-export default withRouter(Progress);
+export default Progress;

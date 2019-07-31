@@ -1,5 +1,4 @@
-import React, { Suspense, lazy, Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { Suspense, lazy, Component } from 'react';
 import Loading from './Loading';
 import SnackbarMessage from './SnackbarMessage';
 
@@ -46,28 +45,15 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <Router>
-          <Suspense fallback={<Loading />}>
-            <Switch>
-              <Route exact path="/" render={() => (
-                <Auth
-                  auth_user={this.state.auth_user}
-                  auth_pass={this.state.auth_pass}
-                  auth_voucher={this.state.auth_voucher}
-                  handleInputChange={this.handleInputChange}
-                  handleTimecredit={this.handleTimecredit}
-                  resetForm={this.resetForm} />
-              )} />
-              <Route path="/error" component={Error} />
-              <Route path="/logout" component={Logout} />
-              <Route path="/progress" component={Progress} />
-              <Route component={NotFound} />
-            </Switch>
-          </Suspense>
-        </Router>
-        {this.state.timecredit ? <SnackbarMessage timecredit={this.state.timecredit} /> : null}
-      </Fragment>
+      <Suspense fallback={<Loading />}>
+        <Auth
+          auth_user={this.state.auth_user}
+          auth_pass={this.state.auth_pass}
+          auth_voucher={this.state.auth_voucher}
+          handleInputChange={this.handleInputChange}
+          handleTimecredit={this.handleTimecredit}
+          resetForm={this.resetForm} />
+      </Suspense>
     )
   }
 };

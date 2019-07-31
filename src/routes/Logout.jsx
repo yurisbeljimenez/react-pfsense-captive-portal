@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from "@material/react-button";
 import illustration from '../images/navigation_black_hole.png';
@@ -36,4 +35,4 @@ const Logout = (props) => {
     )
 }
 
-export default withRouter(Logout);
+export default Logout;

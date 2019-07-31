@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from '@material/react-button';
 import illustration from '../images/no_internet_illustration.png';
@@ -22,4 +21,4 @@ const Error = (props) => {
     )
 }
 
-export default withRouter(Error);
+export default Error;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from '@material/react-button';
 import page_not_found from '../images/page_not_found.jpg';
@@ -22,4 +21,4 @@ const NotFound = (props) => {
     )
 }
 
-export default withRouter(NotFound);
+export default NotFound;
