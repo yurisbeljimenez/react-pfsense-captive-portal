@@ -5,10 +5,9 @@ import { Button } from '@material/react-button';
 import Timer from '../Timer';
 import useInterval from '../useInterval';
 
-
 const Progress = (props) => {
     const { updateView } = props;
-    const [time, setTime] = useState(5);
+    const [time, setTime] = useState(3000);
 
     useEffect(() => {
         axios.post('../server/get_timer.php')
@@ -18,7 +17,7 @@ const Progress = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                updateView('/error');
+                // updateView('/error');
             });
     }, [updateView])
 
@@ -41,7 +40,7 @@ const Progress = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                updateView('/error')
+                updateView('/error');
             })
     }
 

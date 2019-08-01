@@ -14,7 +14,7 @@ class App extends Component {
       auth_pass: '',
       auth_voucher: '',
       timecredit: '',
-      active_view: '/error'
+      active_view: '/progress'
     }
     this.baseState = this.state;
 
@@ -34,6 +34,7 @@ class App extends Component {
   }
 
   handleUpdateView(view) {
+    console.log('Navigating to: ', view);
     this.setState({ active_view: view });
   }
 
@@ -50,19 +51,19 @@ class App extends Component {
     if (this.state.active_view === '/progress') {
       return (
         <Suspense fallback={<Loading />}>
-          <Progress updateView={() => this.handleUpdateView} />
+          <Progress updateView={this.handleUpdateView} />
         </Suspense>
       )
     } else if (this.state.active_view === '/logout') {
       return (
         <Suspense fallback={<Loading />}>
-          <Logout updateView={() => this.handleUpdateView} />
+          <Logout updateView={this.handleUpdateView} />
         </Suspense>
       )
     } else if (this.state.active_view === '/error') {
       return (
         <Suspense fallback={<Loading />}>
-          <Error updateView={() => this.handleUpdateView} />
+          <Error updateView={this.handleUpdateView} />
         </Suspense>
       )
     }

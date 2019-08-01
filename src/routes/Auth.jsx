@@ -36,7 +36,7 @@ const Auth = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                updateView('/error')
+                updateView('/error');
             })
     }
 

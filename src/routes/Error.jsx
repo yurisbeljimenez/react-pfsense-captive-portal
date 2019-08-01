@@ -14,7 +14,7 @@ const Error = (props) => {
                     <img src={Math.random() >= 0.5 ? illustration : illustration02} alt="No internet ilustration" />
                     <h1 className='text-center'>Oops, something <br />went wrong</h1>
                     <p className="text-center">Try again, or check with the admin is this message keeps coming back.</p>
-                    <Button raised onClick={updateView('')}>Try Again</Button>
+                    <Button raised onClick={() => updateView('')}>Try Again</Button>
                 </Cell>
             </Row>
         </Grid>
