@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, Component } from 'react';
-import Loading from './Loading';
+import Loading from './components/Loading';
 
 const Auth = lazy(() => import('./routes/Auth'));
 const Error = lazy(() => import('./routes/Error'));
@@ -76,6 +76,7 @@ class App extends Component {
           auth_voucher={this.state.auth_voucher}
           handleInputChange={this.handleInputChange}
           handleTimecredit={this.handleTimecredit}
+          updateView={this.handleUpdateView}
           resetForm={this.resetForm} />
       </Suspense>
     )

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from '@material/react-button';
-import Timer from '../Timer';
-import useInterval from '../useInterval';
+import Progressbar from '../components/Progressbar'
+import Timer from '../components/Timer';
+import useInterval from '../hooks/useInterval';
 
 const Progress = (props) => {
     const { updateView } = props;
-    const [time, setTime] = useState(3000);
+    const [time, setTime] = useState(576);
 
     useEffect(() => {
         axios.post('../server/get_timer.php')
@@ -48,6 +49,7 @@ const Progress = (props) => {
         <Grid>
             <Row>
                 <Cell columns={12}>
+                    <Progressbar time={time} />
                     <Timer time={time} />
                     <h1 className="text-center">Disconnection Countdown</h1>
                     <p className="text-center">The navigation session will be disabled when the timer counts to cero.</p>
