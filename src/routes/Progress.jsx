@@ -8,16 +8,21 @@ import useInterval from '../hooks/useInterval';
 
 const Progress = (props) => {
     const { updateView } = props;
-    const [time, setTime] = useState(576);
+    const [startTime, setStartTime] = useState(0);
+    const [time, setTime] = useState(0);
+    const [usage, setUsage] = useState(1);
 
     useEffect(() => {
         axios.post('../server/get_timer.php')
             .then((res) => {
                 console.log(res.data);
                 setTime(res.data);
+                setStartTime(res.data);
             })
             .catch((error) => {
                 console.error(error);
+                setTime(60);
+                setStartTime(60);
                 // updateView('/error');
             });
     }, [updateView])
@@ -26,6 +31,7 @@ const Progress = (props) => {
     useInterval(() => {
         if (time > 0) {
             setTime(time - 1)
+            setUsage(time / startTime);
         } else {
             updateView('');
         }
@@ -49,8 +55,8 @@ const Progress = (props) => {
         <Grid>
             <Row>
                 <Cell columns={12}>
-                    <Progressbar time={time} />
                     <Timer time={time} />
+                    <Progressbar usage={usage} />
                     <h1 className="text-center">Disconnection Countdown</h1>
                     <p className="text-center">The navigation session will be disabled when the timer counts to cero.</p>
                     <Button onClick={handleDisconnect} raised>Disconnect</Button>
