@@ -12,6 +12,21 @@ const Progress = (props) => {
     const [time, setTime] = useState(null);
     const [usage, setUsage] = useState(1);
 
+    // TO-DO: remove for production 
+    const timeHelper = (minutes) => {
+        let future = Date.now() + (minutes * 60000)
+        return future;
+    }
+
+    const future = timeHelper(2);
+    // End of remove for production
+
+    const handleTime = (future) => {
+        let now = Date.now();
+        setTime(future - now);
+        console.log(future - now);
+    }
+
     // TO-DO: Get the timer
     useEffect(() => {
         axios.post('../server/get_timer.php')
@@ -27,15 +42,8 @@ const Progress = (props) => {
     }, [updateView])
 
     useInterval(() => {
-        handleTime();
+        handleTime(future);
     }, 1000);
-
-    const handleTime = () => {
-        let now = Date.now();
-        let future = Date.now() + 300;
-        setTime(future - now);
-        setUsage(now / future)
-    }
 
     const handleDisconnect = (e) => {
         e.preventDefault();

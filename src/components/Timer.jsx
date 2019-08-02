@@ -6,8 +6,9 @@ const Timer = (props) => {
 
 
     const formatTime = (time) => {
-        let minutes = Math.floor(time / 60);
-        let seconds = time % 60;
+        let minutes = Math.floor(time / 60000);
+        let seconds = ((time % 60000) / 1000).toFixed(0);
+
         minutes = minutes.toString().length === 1 ? "0" + minutes : minutes;
         seconds = seconds.toString().length === 1 ? "0" + seconds : seconds;
         return (
