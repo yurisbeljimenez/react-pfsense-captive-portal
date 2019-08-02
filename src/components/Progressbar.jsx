@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as progressbar from 'progressbar.js';
 
-const Progressbar = (props) => {
-    const { usage } = props;
+class Progressbar extends React.Component {
+    // constructor(props) {
+    //     super(props);
+    // }
 
-    const reference = React.createRef();
-    const options = {
+    line;
+    reference = React.createRef();
+    options = {
         strokeWidth: 1,
         easing: 'easeInOut',
         duration: 500,
@@ -20,14 +23,20 @@ const Progressbar = (props) => {
         }
     }
 
-    useEffect(() => {
-        let line = new progressbar.Line(reference, options);
-        line.animate(usage);
-    }, [usage]);
+    componentDidMount() {
+        this.line = new progressbar.Line(this.reference.current, this.options);
+        this.line.animate(1);
+    }
 
-    return (
-        <div ref={reference}></div>
-    )
+    componentDidUpdate() {
+        this.line.animate(this.props.usage);
+    }
+
+    render() {
+        return (
+            <div ref={this.reference}></div>
+        )
+    }
 }
 
 export default Progressbar;

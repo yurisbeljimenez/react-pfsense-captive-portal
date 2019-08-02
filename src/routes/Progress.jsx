@@ -21,8 +21,8 @@ const Progress = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                setTime(60);
-                setStartTime(60);
+                setTime(5);
+                setStartTime(5);
                 // updateView('/error');
             });
     }, [updateView])
