@@ -8,34 +8,34 @@ import useInterval from '../hooks/useInterval';
 
 const Progress = (props) => {
     const { updateView } = props;
-    const [startTime, setStartTime] = useState(0);
-    const [time, setTime] = useState(0);
+
+    const [time, setTime] = useState(null);
     const [usage, setUsage] = useState(1);
 
+    // TO-DO: Get the timer
     useEffect(() => {
         axios.post('../server/get_timer.php')
             .then((res) => {
                 console.log(res.data);
-                setTime(res.data);
-                setStartTime(res.data);
+                // TO-DO: Grab the disconnection time here;
             })
             .catch((error) => {
                 console.error(error);
-                setTime(5);
-                setStartTime(5);
+                // TO-DO: Uncomment below for production
                 // updateView('/error');
             });
     }, [updateView])
 
-
     useInterval(() => {
-        if (time > 0) {
-            setTime(time - 1)
-            setUsage(time / startTime);
-        } else {
-            updateView('');
-        }
+        handleTime();
     }, 1000);
+
+    const handleTime = () => {
+        let now = Date.now();
+        let future = Date.now() + 300;
+        setTime(future - now);
+        setUsage(now / future)
+    }
 
     const handleDisconnect = (e) => {
         e.preventDefault();
