@@ -9,22 +9,24 @@ import useInterval from '../hooks/useInterval';
 const Progress = (props) => {
     const { updateView } = props;
 
-    const [time, setTime] = useState(null);
+    const [time, setTime] = useState(0);
     const [usage, setUsage] = useState(1);
+    const [startTime, setStartTime] = useState(0);
+    const [future, setFuture] = useState(0);
 
     // TO-DO: remove for production 
     const timeHelper = (minutes) => {
-        let future = Date.now() + (minutes * 60000)
-        return future;
+        let now = Date.now();
+        let future = now + (minutes * 60000)
+        setFuture(future);
+        setStartTime(now)
     }
-
-    const future = timeHelper(2);
     // End of remove for production
 
     const handleTime = (future) => {
         let now = Date.now();
         setTime(future - now);
-        console.log(future - now);
+        setUsage(1 - ((now - startTime) / (future - startTime)));
     }
 
     // TO-DO: Get the timer
@@ -36,13 +38,18 @@ const Progress = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                // TO-DO: Uncomment below for production
+                // TO-DO: Remove remove after testing the timer
+                timeHelper(.1)
                 // updateView('/error');
             });
     }, [updateView])
 
     useInterval(() => {
-        handleTime(future);
+        if (time >= 0) {
+            handleTime(future);
+        } else {
+            updateView('');
+        }
     }, 1000);
 
     const handleDisconnect = (e) => {

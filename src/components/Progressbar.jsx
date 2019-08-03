@@ -2,9 +2,6 @@ import React from 'react';
 import * as progressbar from 'progressbar.js';
 
 class Progressbar extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    // }
 
     line;
     reference = React.createRef();
@@ -29,7 +26,9 @@ class Progressbar extends React.Component {
     }
 
     componentDidUpdate() {
-        this.line.animate(this.props.usage);
+        if (this.props.usage > 0) {
+            this.line.animate(this.props.usage);
+        } else { return }
     }
 
     render() {

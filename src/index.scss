@@ -41,6 +41,10 @@ img {
   .seconds::after {
     content: 'S';
   }
+
+  &.done {
+    color: #eee;
+  }
 }
 
 .mdc-layout-grid {

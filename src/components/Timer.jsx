@@ -11,11 +11,19 @@ const Timer = (props) => {
 
         minutes = minutes.toString().length === 1 ? "0" + minutes : minutes;
         seconds = seconds.toString().length === 1 ? "0" + seconds : seconds;
-        return (
-            <h1 className="text-center counter">
-                <span className="minutes">{minutes}</span>&nbsp;&nbsp;:&nbsp;<span className="seconds">{seconds}</span>
-            </h1>
-        )
+        if (time > 0) {
+            return (
+                <h1 className="text-center counter">
+                    <span className="minutes">{minutes}</span>&nbsp;&nbsp;:&nbsp;<span className="seconds">{seconds}</span>
+                </h1>
+            )
+        } else {
+            return (
+                <h1 className="text-center counter done">
+                    <span className="minutes">00</span>&nbsp;&nbsp;:&nbsp;<span className="seconds">00</span>
+                </h1>
+            )
+        }
     }
 
     return (
