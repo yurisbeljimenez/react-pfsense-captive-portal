@@ -1,10 +1,12 @@
-This project was created to use pfSense captive portal with a nice web interface in places where it requires both authentication methods username/password and vouchers.
+## About this project
+
+It was created to use pfSense captive portal with a nice web interface in places where it requires both authentication methods username/password and vouchers.
 
 Uses material design by Google for a nice easy to use UI and service worker to allow the user to install the web app as an application on compatible devices.
 
 You are welcome to fork and suggest modifications for future improvements and functionalities.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
