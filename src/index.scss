@@ -64,7 +64,6 @@ img {
   width: 100%;
   margin: 0.5rem 0;
   height: auto !important;
-  padding: 1.5rem 0 !important;
-  @include mdc-button-container-fill-color(black);
+  padding: 1.25rem 0 !important;
   @include mdc-button-horizontal-padding(5rem);
 }
