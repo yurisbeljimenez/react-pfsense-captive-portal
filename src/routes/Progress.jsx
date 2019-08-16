@@ -39,7 +39,7 @@ const Progress = (props) => {
             .catch((error) => {
                 console.error(error);
                 // TO-DO: Remove remove after testing the timer
-                timeHelper(.25)
+                timeHelper(1.1)
                 // updateView('/error');
             });
     }, [updateView])
@@ -72,8 +72,8 @@ const Progress = (props) => {
                 <Cell columns={12}>
                     <Timer time={time} />
                     <Progressbar usage={usage} />
-                    <h1 className="text-center">Disconnection Countdown</h1>
-                    <p className="text-center">Connection will be terminated when timer counts to zero!</p>
+                    <h1 className="text-center">Disconnection countdown</h1>
+                    <p className="text-center">Connection will be <b>terminated</b> when timer counts to zero!</p>
                     <Button onClick={handleDisconnect} raised>Disconnect</Button>
                 </Cell>
             </Row>
