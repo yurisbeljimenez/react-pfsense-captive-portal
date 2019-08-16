@@ -14,7 +14,7 @@ const Progress = (props) => {
     const [startTime, setStartTime] = useState(0);
     const [future, setFuture] = useState(0);
 
-    // TO-DO: remove for production 
+    // TO-DO: remove for production since the future will be sent from the server 
     const timeHelper = (minutes) => {
         let now = Date.now();
         let future = now + (minutes * 60000)
@@ -39,7 +39,7 @@ const Progress = (props) => {
             .catch((error) => {
                 console.error(error);
                 // TO-DO: Remove remove after testing the timer
-                timeHelper(.5)
+                timeHelper(.25)
                 // updateView('/error');
             });
     }, [updateView])
@@ -73,7 +73,7 @@ const Progress = (props) => {
                     <Timer time={time} />
                     <Progressbar usage={usage} />
                     <h1 className="text-center">Disconnection Countdown</h1>
-                    <p className="text-center">The navigation session will be disabled when the timer counts to cero.</p>
+                    <p className="text-center">Connection will be terminated when timer counts to zero!</p>
                     <Button onClick={handleDisconnect} raised>Disconnect</Button>
                 </Cell>
             </Row>
