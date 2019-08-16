@@ -4,8 +4,8 @@ import useInterval from '../hooks/useInterval';
 
 const Progressbar = (props) => {
 
-    let line = useRef();
-    const reference = useRef(),
+    const line = useRef(),
+        reference = useRef(),
         options = {
             strokeWidth: 1,
             easing: 'easeInOut',
