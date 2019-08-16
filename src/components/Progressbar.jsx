@@ -1,41 +1,41 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as progressbar from 'progressbar.js';
+import useInterval from '../hooks/useInterval';
 
-class Progressbar extends React.Component {
+const Progressbar = (props) => {
 
-    line;
-    reference = React.createRef();
-    options = {
-        strokeWidth: 1,
-        easing: 'easeInOut',
-        duration: 500,
-        color: '#3A4250',
-        trailColor: '#eee',
-        trailWidth: 1,
-        svgStyle: { width: '100%', height: '100%' },
-        from: { color: '#FB0F0E' },
-        to: { color: '#55C2B8' },
-        step: (state, bar) => {
-            bar.path.setAttribute('stroke', state.color);
+    const line = useRef(),
+        reference = useRef(),
+        options = {
+            strokeWidth: 1,
+            easing: 'easeInOut',
+            duration: 500,
+            color: '#3A4250',
+            trailColor: '#eee',
+            trailWidth: 1,
+            svgStyle: { width: '100%', height: '100%' },
+            from: { color: '#FB0F0E' },
+            to: { color: '#55C2B8' },
+            step: (state, bar) => {
+                bar.path.setAttribute('stroke', state.color);
+            }
         }
-    }
 
-    componentDidMount() {
-        this.line = new progressbar.Line(this.reference.current, this.options);
-        this.line.animate(1);
-    }
+    useEffect(() => {
+        line.current = new progressbar.Line(reference.current, options);
+        return () => line.current.destroy();
+    }, []);
 
-    componentDidUpdate() {
-        if (this.props.usage > 0) {
-            this.line.animate(this.props.usage);
+    useInterval(() => {
+        if (props.usage > 0) {
+            line.current.animate(props.usage);
         } else { return }
-    }
+    }, 1000)
 
-    render() {
-        return (
-            <div ref={this.reference}></div>
-        )
-    }
+
+    return (
+        <div ref={reference}></div>
+    )
 }
 
 export default Progressbar;

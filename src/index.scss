@@ -27,11 +27,16 @@ img {
   font-weight: 900;
   color: var(--mdc-theme-secondary);
 
+  .hours::after,
   .minutes::after,
   .seconds::after {
     font-size: 2rem;
     position: absolute;
     transform: translateY(1.25rem);
+  }
+
+  .hours::after {
+    content: 'H';
   }
 
   .minutes::after {
