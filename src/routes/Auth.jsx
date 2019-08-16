@@ -62,8 +62,8 @@ const Auth = (props) => {
         <Grid>
             <Row>
                 <Cell columns={12}>
-                    <h1 className="text-center">Authenticate</h1>
-                    <p>Enter your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</p>
+                    <h1 className="text-center">Wifender</h1>
+                    <p className="text-center">Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</p>
                     <form onSubmit={onFormSubmit} ref={el => (form = el)}>
                         <TextField
                             label='Username'
