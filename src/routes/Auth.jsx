@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSpring, animated } from 'react-spring'
 import Form from '../components/Form';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 
@@ -14,14 +15,23 @@ const Auth = (props) => {
         updateView
     } = props;
 
-
+    const animationProps = useSpring({
+        from: {
+            opacity: 0,
+            transform: `translateY(100%)`
+        },
+        to: {
+            opacity: 1,
+            transform: `translateY(0)`
+        }
+    })
 
     return (
         <Grid>
             <Row>
                 <Cell columns={12}>
-                    <h1 className="text-center">Wifender</h1>
-                    <p className="text-center">Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</p>
+                    <animated.h1 style={animationProps} className="text-center">Wifender</animated.h1>
+                    <animated.p style={animationProps} className="text-center">Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</animated.p>
                     <Form
                         auth_user={auth_user}
                         auth_pass={auth_pass}
@@ -29,7 +39,7 @@ const Auth = (props) => {
                         handleInputChange={handleInputChange}
                         handleTimecredit={handleTimecredit}
                         resetForm={resetForm}
-                        updateView={updateView}></Form>
+                        updateView={updateView} />
                 </Cell>
             </Row>
         </Grid>
