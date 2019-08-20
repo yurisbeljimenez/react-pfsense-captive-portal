@@ -15,7 +15,7 @@ const Auth = (props) => {
         updateView
     } = props;
 
-    const animationProps = useSpring({
+    const slideUp = useSpring({
         from: {
             opacity: 0,
             transform: `translateY(100%)`
@@ -30,8 +30,8 @@ const Auth = (props) => {
         <Grid>
             <Row>
                 <Cell columns={12}>
-                    <animated.h1 style={animationProps} className="text-center">Wifender</animated.h1>
-                    <animated.p style={animationProps} className="text-center">Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</animated.p>
+                    <animated.h1 style={slideUp} className="text-center">Wifender</animated.h1>
+                    <animated.p style={slideUp} className="text-center">Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</animated.p>
                     <Form
                         auth_user={auth_user}
                         auth_pass={auth_pass}
