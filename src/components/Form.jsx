@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import TextField, { Input } from '@material/react-text-field';
+import { Snackbar } from '@material/react-snackbar';
 import Button from '@material/react-button';
 
 const Form = (props) => {
-
     const {
         auth_user,
         auth_pass,
         auth_voucher,
         handleInputChange,
-        handleTimecredit,
         resetForm,
         updateView
     } = props;
+
+    const [timecredit, setTimecredit] = useState(0);
 
     // DOM reference to the form. Use to create the form data.
     let form;
@@ -27,10 +28,11 @@ const Form = (props) => {
         let formData = new FormData(form);
         axios.post('../server/check_voucher.php', formData)
             .then(res => {
+                // TO-DO: Check the time available on the voucher and raise an alert with the data returned.
                 console.log('Response Data', res.data);
-                handleTimecredit(res.data);
+                setTimecredit(res.data);
                 setTimeout(() => {
-                    handleTimecredit('');
+                    setTimecredit(0);
                 }, 5000);
             })
             .catch((error) => {
@@ -47,9 +49,8 @@ const Form = (props) => {
         axios.post('$PORTAL_ACTION$', formData)
             .then(res => {
                 // TO-DO: Check type of response data and if user send them to logout and if 
-                // timecredit send them to progress
+                // i'ts a voucher send them to progress
                 console.log('Response Data', res.data);
-                updateView('/progress');
             })
             .catch((error) => {
                 console.error(error);
@@ -58,50 +59,53 @@ const Form = (props) => {
     }
 
     return (
-        <form onSubmit={onFormSubmit} ref={el => (form = el)}>
-            <TextField
-                label='Username'
-                style={hideUserAuth}
-                outlined
-            ><Input
-                    name="auth_user"
-                    id="auth_user"
-                    type="text"
-                    disabled={auth_voucher !== ''}
-                    value={auth_user}
-                    onChange={handleInputChange} />
-            </TextField>
-            <TextField
-                label='Password'
-                style={hideUserAuth}
-                outlined
-            ><Input
-                    name="auth_pass"
-                    id="auth_pass"
-                    type="password"
-                    disabled={auth_voucher !== ''}
-                    value={auth_pass}
-                    onChange={handleInputChange} />
-            </TextField>
-            <TextField
-                label='Voucher'
-                style={hideVoucher}
-                outlined
-            ><Input
-                    name="auth_voucher"
-                    id="auth_voucher"
-                    type="text"
-                    disabled={auth_user !== '' || auth_pass !== ''}
-                    value={auth_voucher}
-                    onChange={handleInputChange} />
-            </TextField>
-            <Input name="redirurl" id="redirurl" type="hidden" value="$PORTAL_REDIRURL$" />
-            <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
+        <>
+            <form onSubmit={onFormSubmit} ref={el => (form = el)}>
+                <TextField
+                    label='Username'
+                    style={hideUserAuth}
+                    outlined
+                ><Input
+                        name="auth_user"
+                        id="auth_user"
+                        type="text"
+                        disabled={auth_voucher !== ''}
+                        value={auth_user}
+                        onChange={handleInputChange} />
+                </TextField>
+                <TextField
+                    label='Password'
+                    style={hideUserAuth}
+                    outlined
+                ><Input
+                        name="auth_pass"
+                        id="auth_pass"
+                        type="password"
+                        disabled={auth_voucher !== ''}
+                        value={auth_pass}
+                        onChange={handleInputChange} />
+                </TextField>
+                <TextField
+                    label='Voucher'
+                    style={hideVoucher}
+                    outlined
+                ><Input
+                        name="auth_voucher"
+                        id="auth_voucher"
+                        type="text"
+                        disabled={auth_user !== '' || auth_pass !== ''}
+                        value={auth_voucher}
+                        onChange={handleInputChange} />
+                </TextField>
+                <Input name="redirurl" id="redirurl" type="hidden" value="$PORTAL_REDIRURL$" />
+                <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
 
-            <Button type='submit' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Authenticate</Button>
-            <Button type='button' disabled={auth_voucher === ''} onClick={checkVoucher} raised style={hideVoucher}>Check Voucher</Button>
-            <Button type='reset' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} onClick={resetForm} raised>Reset form</Button>
-        </form>
+                <Button type='submit' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Authenticate</Button>
+                <Button type='button' disabled={auth_voucher === ''} onClick={checkVoucher} raised style={hideVoucher}>Check Voucher</Button>
+                <Button type='reset' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} onClick={resetForm} raised>Reset form</Button>
+            </form>
+            {timecredit !== 0 && <Snackbar message={`Voucher available time is ${(timecredit / 60).toFixed(0)} minutes.`} />}
+        </>
     )
 }
 

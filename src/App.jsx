@@ -13,14 +13,12 @@ class App extends Component {
       auth_user: '',
       auth_pass: '',
       auth_voucher: '',
-      timecredit: '',
       active_view: ''
     }
     this.baseState = this.state;
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleUpdateView = this.handleUpdateView.bind(this);
-    this.handleTimecredit = this.handleTimecredit.bind(this);
     this.resetForm = this.resetForm.bind(this);
   }
 
@@ -36,10 +34,6 @@ class App extends Component {
   handleUpdateView(view) {
     console.log('Navigating to: ', view);
     this.setState({ active_view: view });
-  }
-
-  handleTimecredit(value) {
-    this.setState({ timecredit: value })
   }
 
   resetForm(event) {
