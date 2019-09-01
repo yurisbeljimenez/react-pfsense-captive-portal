@@ -35,6 +35,23 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
+    .loading {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader {
+      border: 0.2rem solid #f3f3f3;
+      border-top: 0.2rem solid #3a4250;
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      animation: spin 2s linear infinite;
+    }
+
     .loading-container {
       box-sizing: border-box;
       margin: 0 auto;
@@ -77,16 +94,6 @@
       transform: translateX(-50%)
     }
 
-    @keyframes placeHolderShimmer {
-      0% {
-        background-position: -468px 0
-      }
-
-      100% {
-        background-position: 468px 0
-      }
-    }
-
     .linear-background {
       animation-duration: 1s;
       animation-fill-mode: forwards;
@@ -98,6 +105,26 @@
       background-size: 1000px 104px;
       position: relative;
       overflow: hidden;
+    }
+
+    @keyframes placeHolderShimmer {
+      0% {
+        background-position: -468px 0
+      }
+
+      100% {
+        background-position: 468px 0
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
   </style>
 </head>
@@ -116,7 +143,7 @@
       <div className="placeholder placeholder-button linear-background"></div>
       <div className="placeholder placeholder-button linear-background"></div>
       <div className="placeholder placeholder-button linear-background"></div>
-  </section>
+    </section>
   </div>
   <!--
       This HTML file is a template.
