@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, Component } from 'react';
-import Loading from './components/Loading';
+import AuthLoading from './components/AuthLoading';
 
 const Auth = lazy(() => import('./routes/Auth'));
 const Error = lazy(() => import('./routes/Error'));
@@ -44,26 +44,26 @@ class App extends Component {
   render() {
     if (this.state.active_view === '/progress') {
       return (
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<AuthLoading />}>
           <Progress updateView={this.handleUpdateView} />
         </Suspense>
       )
     } else if (this.state.active_view === '/logout') {
       return (
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<AuthLoading />}>
           <Logout updateView={this.handleUpdateView} />
         </Suspense>
       )
     } else if (this.state.active_view === '/error') {
       return (
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<AuthLoading />}>
           <Error updateView={this.handleUpdateView} />
         </Suspense>
       )
     }
 
     return (
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<AuthLoading />}>
         <Auth
           auth_user={this.state.auth_user}
           auth_pass={this.state.auth_pass}
