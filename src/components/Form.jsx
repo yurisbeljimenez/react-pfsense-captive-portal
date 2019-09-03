@@ -21,6 +21,7 @@ const Form = (props) => {
 
     const hideVoucher = auth_user || auth_pass ? { display: 'none' } : {};
     const hideUserAuth = auth_voucher ? { display: 'none' } : {};
+    const credentialsRequired = auth_user || auth_pass ? true : false;
 
     // Request voucher timecredit and update the global state with the value, set it to an 
     // empty string again after 5s to be hable to call the Snackbar again.
@@ -76,6 +77,7 @@ const Form = (props) => {
                         name="auth_user"
                         id="auth_user"
                         type="text"
+                        required={credentialsRequired}
                         disabled={auth_voucher !== ''}
                         value={auth_user}
                         onChange={event => setAuthUser(event.target.value)} />
@@ -88,6 +90,7 @@ const Form = (props) => {
                         name="auth_pass"
                         id="auth_pass"
                         type="password"
+                        required={credentialsRequired}
                         disabled={auth_voucher !== ''}
                         value={auth_pass}
                         onChange={event => setAuthPass(event.target.value)} />
