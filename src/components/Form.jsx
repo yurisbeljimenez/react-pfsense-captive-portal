@@ -14,7 +14,6 @@ const Form = (props) => {
         updateView
     } = props;
 
-    const [timecredit, setTimecredit] = useState(0);
     const [auth_user, setAuthUser] = useState('');
     const [auth_pass, setAuthPass] = useState('');
     const [auth_voucher, setAuthVoucher] = useState('');
@@ -32,10 +31,6 @@ const Form = (props) => {
             .then(res => {
                 // TO-DO: Check the time available on the voucher and raise an alert with the data returned.
                 console.log('Response Data', res.data);
-                setTimecredit(res.data);
-                setTimeout(() => {
-                    setTimecredit(0);
-                }, 5000);
             })
             .catch((error) => {
                 console.error(error);
@@ -114,7 +109,6 @@ const Form = (props) => {
                 <Button type='button' disabled={auth_voucher === ''} onClick={checkVoucher} raised style={hideVoucher}>Check Voucher</Button>
                 <Button type='reset' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} onClick={resetForm} raised>Reset form</Button>
             </form>
-            {timecredit !== 0 && <Snackbar message={`Voucher available time is ${(timecredit / 60).toFixed(0)} minutes.`} />}
         </>
     )
 }
