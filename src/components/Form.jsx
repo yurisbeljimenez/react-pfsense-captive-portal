@@ -4,20 +4,21 @@ import TextField, { Input } from '@material/react-text-field';
 import { Snackbar } from '@material/react-snackbar';
 import Button from '@material/react-button';
 
+
+
+// DOM reference to the form. Use to create the form data.
+let form;
+
 const Form = (props) => {
     const {
-        auth_user,
-        auth_pass,
-        auth_voucher,
-        handleInputChange,
-        resetForm,
         updateView
     } = props;
 
     const [timecredit, setTimecredit] = useState(0);
+    const [auth_user, setAuthUser] = useState('');
+    const [auth_pass, setAuthPass] = useState('');
+    const [auth_voucher, setAuthVoucher] = useState('');
 
-    // DOM reference to the form. Use to create the form data.
-    let form;
     const hideVoucher = auth_user || auth_pass ? { display: 'none' } : {};
     const hideUserAuth = auth_voucher ? { display: 'none' } : {};
 
@@ -58,6 +59,12 @@ const Form = (props) => {
             })
     }
 
+    const resetForm = () => {
+        setAuthUser('');
+        setAuthPass('');
+        setAuthVoucher('');
+    }
+
     return (
         <>
             <form onSubmit={onFormSubmit} ref={el => (form = el)}>
@@ -71,7 +78,7 @@ const Form = (props) => {
                         type="text"
                         disabled={auth_voucher !== ''}
                         value={auth_user}
-                        onChange={handleInputChange} />
+                        onChange={event => setAuthUser(event.target.value)} />
                 </TextField>
                 <TextField
                     label='Password'
@@ -83,7 +90,7 @@ const Form = (props) => {
                         type="password"
                         disabled={auth_voucher !== ''}
                         value={auth_pass}
-                        onChange={handleInputChange} />
+                        onChange={event => setAuthPass(event.target.value)} />
                 </TextField>
                 <TextField
                     label='Voucher'
@@ -95,7 +102,7 @@ const Form = (props) => {
                         type="text"
                         disabled={auth_user !== '' || auth_pass !== ''}
                         value={auth_voucher}
-                        onChange={handleInputChange} />
+                        onChange={event => setAuthVoucher(event.target.value)} />
                 </TextField>
                 <Input name="redirurl" id="redirurl" type="hidden" value="$PORTAL_REDIRURL$" />
                 <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
