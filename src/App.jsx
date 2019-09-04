@@ -9,7 +9,7 @@ const Progress = lazy(() => import('./routes/Progress'));
 
 const App = () => {
 
-  const [active_view, handleUpdateView] = useState('/logout');
+  const [active_view, handleUpdateView] = useState('');
 
   if (active_view === '/progress') {
     return (
