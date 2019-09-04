@@ -42,8 +42,8 @@ const Progress = (props) => {
             .catch((error) => {
                 console.error(error);
                 // TO-DO: Remove remove after testing the timer
-                // timeHelper(1.1)
-                updateView('/error');
+                timeHelper(.1)
+                // updateView('/error');
             });
     }, [updateView])
 
