@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring'
+import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { slideUp } from '../springs/animations'
 import Form from '../components/Form';
-import { Cell, Grid, Row } from '@material/react-layout-grid';
 
 
 const Auth = (props) => {
