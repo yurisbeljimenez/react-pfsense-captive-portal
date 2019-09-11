@@ -36,13 +36,12 @@ const Progress = (props) => {
     useEffect(() => {
         axios.post('../server/get_timer.php')
             .then((res) => {
-                console.log(res.data);
                 // TO-DO: Grab the disconnection time here;
+                console.log(res.data);
+                timeHelper(1.1)
             })
             .catch((error) => {
                 console.error(error);
-                // TO-DO: Remove remove after testing the timer
-                // timeHelper(1.1)
                 updateView('/error');
             });
     }, [updateView])

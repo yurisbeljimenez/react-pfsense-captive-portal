@@ -24,6 +24,7 @@ const Progressbar = (props) => {
     useEffect(() => {
         line.current = new progressbar.Line(reference.current, options);
         return () => line.current.destroy();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useInterval(() => {

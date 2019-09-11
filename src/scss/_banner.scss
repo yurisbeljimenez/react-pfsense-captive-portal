@@ -1,0 +1,32 @@
+.banner {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+
+  button {
+    font-weight: 700;
+  }
+}
+.text-content {
+  padding: 0 1rem;
+  flex-grow: 1;
+}
+.banner__actions {
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: flex-end;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 8px;
+}
+
+@media (max-width: 850px) {
+  .banner {
+    flex-direction: column;
+  }
+}
