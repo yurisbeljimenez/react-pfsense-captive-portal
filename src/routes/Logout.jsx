@@ -4,8 +4,7 @@ import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from "@material/react-button";
 import { useSpring, animated } from 'react-spring'
 import { slideUp, fadeIn } from '../springs/animations'
-import illustration from '../images/navigation_black_hole.png';
-import illustration02 from '../images/secure_navigation.jpg';
+import illustration from '../images/browsing_wifi.gif';
 
 
 const Logout = (props) => {
@@ -23,6 +22,7 @@ const Logout = (props) => {
             })
             .catch((error) => {
                 console.error(error);
+                updateView('/error');
             })
     }
 
@@ -30,7 +30,7 @@ const Logout = (props) => {
         <Grid>
             <Row>
                 <Cell columns={12}>
-                    <animated.img style={fadeInAnimation} src={Math.random() >= 0.5 ? illustration : illustration02} alt="Navigation illustration" />
+                    <animated.img style={fadeInAnimation} src={illustration} alt="Navigation illustration" />
                     <animated.h1 style={slideUpAnimation} className="text-center">Welcome back</animated.h1>
                     <animated.p style={slideUpAnimation} className="text-center">Browse and get lost in the internet; come back here when you're
                     ready to walk away and end your session.</animated.p>

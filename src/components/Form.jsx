@@ -3,9 +3,6 @@ import axios from 'axios';
 import TextField, { Input } from '@material/react-text-field';
 import Button from '@material/react-button';
 
-
-
-// DOM reference to the form. Use to create the form data.
 let form;
 
 const Form = (props) => {
@@ -21,14 +18,11 @@ const Form = (props) => {
     const hideUserAuth = auth_voucher ? { display: 'none' } : {};
     const credentialsRequired = auth_user || auth_pass ? true : false;
 
-    // Request voucher timecredit and update the global state with the value, set it to an 
-    // empty string again after 5s to be hable to call the Snackbar again.
     const checkVoucher = (e) => {
         e.preventDefault();
         let formData = new FormData(form);
         axios.post('../server/check_voucher.php', formData)
             .then(res => {
-                // TO-DO: Check the time available on the voucher and raise an alert with the data returned.
                 console.log('Response Data', res.data);
             })
             .catch((error) => {
@@ -37,15 +31,11 @@ const Form = (props) => {
             })
     }
 
-    // Send the authetication form data to the server for authentication and redirect to the
-    // Progress component on success
     const onFormSubmit = (e) => {
         e.preventDefault();
         let formData = new FormData(form);
         axios.post('$PORTAL_ACTION$', formData)
             .then(res => {
-                // TO-DO: Check type of response data and if user send them to logout and if 
-                // i'ts a voucher send them to progress
                 console.log('Response Data', res.data);
             })
             .catch((error) => {
