@@ -76,3 +76,11 @@ img {
   padding: 1.25rem 0 !important;
   @include mdc-button-horizontal-padding(5rem);
 }
+
+hr {
+  margin-block-start: unset;
+  margin-block-end: unset;
+  border-width: unset;
+  border: unset;
+  border-bottom: 1px solid #e0e0e0;
+}
