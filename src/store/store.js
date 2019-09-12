@@ -1,8 +1,8 @@
-import { createStore } from 'react-redux';
+import { createStore } from 'redux';
+import { reducer } from './reducer';
 
 const initialState = {
     voucher: '',
-    time: '',
     active_view: ''
 }
 
