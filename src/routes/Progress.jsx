@@ -2,15 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from '@material/react-button';
-import { useSpring, animated } from 'react-spring'
-import { slideUp } from '../springs/animations'
 import Progressbar from '../components/Progressbar'
 import Timer from '../components/Timer';
 import useInterval from '../hooks/useInterval';
 
 const Progress = (props) => {
     const { updateView } = props;
-    const slideUpAnimation = useSpring(slideUp);
 
     const [time, setTime] = useState(0);
     const [usage, setUsage] = useState(1);
@@ -72,8 +69,8 @@ const Progress = (props) => {
                 <Cell columns={12}>
                     <Timer time={time} />
                     <Progressbar usage={usage} />
-                    <animated.h1 style={slideUpAnimation} className="text-center">Disconnection countdown</animated.h1>
-                    <animated.p style={slideUpAnimation} className="text-center">Connection will be <b>terminated</b> when timer counts to zero!</animated.p>
+                    <h1 className="text-center">Disconnection countdown</h1>
+                    <p className="text-center">Connection will be <b>terminated</b> when timer counts to zero!</p>
                     <Button onClick={handleDisconnect} raised>Disconnect</Button>
                 </Cell>
             </Row>
