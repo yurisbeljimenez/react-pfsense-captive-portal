@@ -1,0 +1,43 @@
+@import '@material/animation/variables';
+
+.banner-enter-animation {
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  animation: banner-enter-animation 175ms
+    $mdc-animation-standard-curve-timing-function;
+}
+
+.banner-exit-animation {
+  position: fixed;
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: banner-exit-animation 175ms
+    $mdc-animation-standard-curve-timing-function;
+}
+
+@keyframes banner-enter-animation {
+  from {
+    position: fixed;
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes banner-exit-animation {
+  from {
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    position: fixed;
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}

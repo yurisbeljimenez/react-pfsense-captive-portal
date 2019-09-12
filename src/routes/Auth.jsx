@@ -12,7 +12,7 @@ const Auth = (props) => {
 
     return (
         <>
-            <Banner />
+            <Banner time={'30 minutes'} />
             <Grid>
                 <Row>
                     <Cell columns={12}>

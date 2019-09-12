@@ -3,6 +3,8 @@
 @import '@material/react-button/index.scss';
 @import '@material/react-snackbar/index.scss';
 
+@import './scss/banner';
+@import './scss/banner-animations';
 
 :root {
   --mdc-theme-primary: #3a4250;
