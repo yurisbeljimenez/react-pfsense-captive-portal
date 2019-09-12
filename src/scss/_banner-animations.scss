@@ -6,6 +6,7 @@
   transform: translateY(0);
   animation: banner-enter-animation 175ms
     $mdc-animation-standard-curve-timing-function;
+  will-change: transform;
 }
 
 .banner-exit-animation {
@@ -14,6 +15,7 @@
   transform: translateY(-100%);
   animation: banner-exit-animation 175ms
     $mdc-animation-standard-curve-timing-function;
+  will-change: transform;
 }
 
 @keyframes banner-enter-animation {
