@@ -9,15 +9,6 @@
   will-change: transform;
 }
 
-.banner-exit-animation {
-  position: fixed;
-  opacity: 0;
-  transform: translateY(-100%);
-  animation: banner-exit-animation 175ms
-    $mdc-animation-standard-curve-timing-function;
-  will-change: transform;
-}
-
 @keyframes banner-enter-animation {
   from {
     position: fixed;
@@ -28,18 +19,5 @@
     position: relative;
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes banner-exit-animation {
-  from {
-    position: relative;
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    position: fixed;
-    opacity: 0;
-    transform: translateY(-100%);
   }
 }

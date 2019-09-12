@@ -8,7 +8,7 @@ const Banner = (props) => {
         setOpen(!open);
     }
 
-    const classes = open ? "banner banner-enter-animation" : "banner banner-exit-animation";
+    const classes = open ? "banner banner-enter-animation" : "banner";
     return (
         <div className={classes}>
             <div className="banner-body">

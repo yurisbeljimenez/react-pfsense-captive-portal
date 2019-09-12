@@ -1,8 +1,7 @@
-@import '@material/react-button/index.scss';
-
 .banner {
   position: fixed;
   transform: translateY(-100%);
+  transition: 175ms;
 }
 
 .banner-body {
