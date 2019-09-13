@@ -1,48 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { activeView, storeVoucher } from '../store/actions';
 import TextField, { Input } from '@material/react-text-field';
 import Button from '@material/react-button';
 
-let form;
-
-const Form = (props) => {
-    const {
-        updateView
-    } = props;
+const Form = () => {
 
     const [auth_user, setAuthUser] = useState('');
     const [auth_pass, setAuthPass] = useState('');
     const [auth_voucher, setAuthVoucher] = useState('');
+    const formReference = useRef(null);
+    const dispatch = useDispatch();
+
 
     const hideVoucher = auth_user || auth_pass ? { display: 'none' } : {};
     const hideUserAuth = auth_voucher ? { display: 'none' } : {};
     const credentialsRequired = auth_user || auth_pass ? true : false;
-
-    const checkVoucher = (e) => {
-        e.preventDefault();
-        let formData = new FormData(form);
-        axios.post('../server/check_voucher.php', formData)
-            .then(res => {
-                console.log('Response Data', res.data);
-            })
-            .catch((error) => {
-                console.error(error);
-                updateView('/error');
-            })
-    }
-
-    const onFormSubmit = (e) => {
-        e.preventDefault();
-        let formData = new FormData(form);
-        axios.post('$PORTAL_ACTION$', formData)
-            .then(res => {
-                console.log('Response Data', res.data);
-            })
-            .catch((error) => {
-                console.error(error);
-                updateView('/error');
-            })
-    }
 
     const resetForm = () => {
         setAuthUser('');
@@ -50,8 +24,39 @@ const Form = (props) => {
         setAuthVoucher('');
     }
 
+    const boundActiveView = (view) => dispatch(activeView(view));
+    const boundStoreVoucher = (payload) => dispatch(storeVoucher(payload));
+
+    const submitForm = (e) => {
+        e.preventDefault();
+        let payload = new FormData(formReference.current);
+        axios.post('../server/check_voucher.php', payload)
+            .then(res => {
+                console.log('Response Data', res.data);
+            })
+            .catch((error) => {
+                console.error(error);
+                boundActiveView('/error');
+            })
+    }
+
+    const checkVoucher = (e) => {
+        e.preventDefault();
+        let payload = new FormData(formReference.current);
+        axios.post('$PORTAL_ACTION$', payload)
+            .then(res => {
+                console.log('Response Data', res.data);
+                boundStoreVoucher(auth_voucher);
+                setAuthVoucher('');
+            })
+            .catch((error) => {
+                console.error(error);
+                boundActiveView('/error');
+            })
+    }
+
     return (
-        <form onSubmit={onFormSubmit} ref={el => (form = el)}>
+        <form ref={formReference} onSubmit={submitForm}>
             <TextField
                 label='Username'
                 style={hideUserAuth}
@@ -94,8 +99,8 @@ const Form = (props) => {
             <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
 
             <Button type='submit' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Authenticate</Button>
-            <Button type='button' disabled={auth_voucher === ''} onClick={checkVoucher} raised style={hideVoucher}>Check Voucher</Button>
-            <Button type='reset' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} onClick={resetForm} raised>Reset form</Button>
+            <Button type='button' onClick={checkVoucher} disabled={auth_voucher === ''} raised style={hideVoucher}>Check Voucher</Button>
+            <Button type='reset' onClick={resetForm} disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Reset form</Button>
         </form>
     )
 }

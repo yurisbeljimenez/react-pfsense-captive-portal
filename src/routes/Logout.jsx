@@ -1,12 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { activeView } from '../store/actions';
 import axios from 'axios';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from "@material/react-button";
 import illustration from '../images/browsing_wifi.gif';
 
+const dispatch = useDispatch();
+const boundActiveView = (view) => dispatch(activeView(view));
 
-const Logout = (props) => {
-    const { updateView } = props;
+const Logout = () => {
 
     const handleDisconnect = (e) => {
         e.preventDefault();
@@ -14,11 +17,11 @@ const Logout = (props) => {
         axios.post('../server/logout.php')
             .then(res => {
                 console.log(res.data)
-                updateView('');
+                boundActiveView('');
             })
             .catch((error) => {
                 console.error(error);
-                updateView('/error');
+                boundActiveView('/error');
             })
     }
 

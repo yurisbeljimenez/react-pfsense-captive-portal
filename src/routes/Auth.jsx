@@ -4,12 +4,7 @@ import Form from '../components/Form';
 import Banner from '../components/Banner';
 
 
-const Auth = (props) => {
-    const {
-        updateView
-    } = props;
-
-
+const Auth = () => {
     return (
         <>
             <Banner time={'30 minutes'} />
@@ -18,7 +13,7 @@ const Auth = (props) => {
                     <Cell columns={12}>
                         <h1 className="text-center">Wifender</h1>
                         <p className="text-center">Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</p>
-                        <Form updateView={updateView} />
+                        <Form />
                     </Cell>
                 </Row>
             </Grid>

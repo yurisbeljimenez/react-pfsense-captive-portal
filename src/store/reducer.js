@@ -1,4 +1,4 @@
-import { ACTIVE_VIEW, STORE_VOUCHER, DISCARD_VOUCHER, ACTIVATE_VOUCHER } from "./actions";
+import { ACTIVE_VIEW, STORE_VOUCHER, DISCARD_VOUCHER, ACTIVATE_VOUCHER, CHECK_VOUCHER, AUTHENTICATE } from "./actions";
 
 export function reducer(state, { type, payload }) {
     switch (type) {
@@ -7,18 +7,26 @@ export function reducer(state, { type, payload }) {
                 ...state,
                 active_view: payload
             }
+
         case STORE_VOUCHER:
             return {
                 ...state,
                 voucher: payload
             }
+
         case DISCARD_VOUCHER:
             return {
                 ...state,
                 voucher: ''
             }
+
         case ACTIVATE_VOUCHER:
-            console.log('Activating the voucher');
+            return state;
+
+        case AUTHENTICATE:
+            console.log('Authenticate');
+            break;
+
         default:
             return state;
     }
