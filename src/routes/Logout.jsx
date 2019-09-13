@@ -6,10 +6,10 @@ import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from "@material/react-button";
 import illustration from '../images/browsing_wifi.gif';
 
-const dispatch = useDispatch();
-const boundActiveView = (view) => dispatch(activeView(view));
 
 const Logout = () => {
+    const dispatch = useDispatch();
+    const boundActiveView = (view) => dispatch(activeView(view));
 
     const handleDisconnect = (e) => {
         e.preventDefault();

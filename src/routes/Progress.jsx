@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { activeView } from '../store/actions';
 import { Cell, Grid, Row } from '@material/react-layout-grid';
 import { Button } from '@material/react-button';
 import Progressbar from '../components/Progressbar'
 import Timer from '../components/Timer';
 import useInterval from '../hooks/useInterval';
+
 
 const Progress = (props) => {
     const { updateView } = props;
@@ -13,6 +16,8 @@ const Progress = (props) => {
     const [usage, setUsage] = useState(1);
     const [startTime, setStartTime] = useState(0);
     const [future, setFuture] = useState(0);
+    const dispatch = useDispatch();
+    const boundActiveView = (view) => dispatch(activeView(view));
 
     // TO-DO: remove for production since the future will be sent from the server 
     const timeHelper = (minutes) => {
@@ -39,7 +44,7 @@ const Progress = (props) => {
             })
             .catch((error) => {
                 console.error(error);
-                updateView('/error');
+                boundActiveView('/error');
             });
     }, [updateView])
 
@@ -47,7 +52,7 @@ const Progress = (props) => {
         if (time >= 0) {
             handleTime(future);
         } else {
-            updateView('');
+            boundActiveView('')
         }
     }, 1000);
 
@@ -56,7 +61,7 @@ const Progress = (props) => {
         axios.post('../server/logout.php')
             .then(res => {
                 console.log(res.data)
-                updateView('');
+                boundActiveView('');
             })
             .catch((error) => {
                 console.error(error);
