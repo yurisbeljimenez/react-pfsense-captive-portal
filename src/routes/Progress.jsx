@@ -30,23 +30,25 @@ const Progress = () => {
     const handleTime = (future) => {
         let now = Date.now();
         setTime(future - now);
-        setUsage(1 - ((now - startTime) / (future - startTime)));
+        setUsage(1 - ((now - startTime) / (future - startTime - 1000)));
     }
 
     // TO-DO: Get the timer
     useEffect(() => {
         axios.post('../server/get_timer.php')
             .then((res) => {
-                // TO-DO: Grab the disconnection time here;
                 console.log(res.data);
+                // TO-DO: Grab the disconnection time here and update the future and startTime.
+                // setFuture();
+                // setStartTime()
                 handleTime();
             })
             .catch((error) => {
                 console.error(error);
-                timeHelper(1)
+                timeHelper(1.1)
                 // boundActiveView('/error');
             });
-    })
+    }, [])
 
     useInterval(() => {
         if (time >= 0) {
