@@ -48,6 +48,7 @@ const Progress = () => {
                 timeHelper(1.1)
                 // boundActiveView('/error');
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useInterval(() => {
