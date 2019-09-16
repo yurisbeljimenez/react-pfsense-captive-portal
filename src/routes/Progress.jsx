@@ -9,11 +9,10 @@ import Timer from '../components/Timer';
 import useInterval from '../hooks/useInterval';
 
 
-const Progress = (props) => {
-    const { updateView } = props;
+const Progress = () => {
 
     const [time, setTime] = useState(0);
-    const [usage, setUsage] = useState(1);
+    const [usage, setUsage] = useState(0);
     const [startTime, setStartTime] = useState(0);
     const [future, setFuture] = useState(0);
     const dispatch = useDispatch();
@@ -40,13 +39,14 @@ const Progress = (props) => {
             .then((res) => {
                 // TO-DO: Grab the disconnection time here;
                 console.log(res.data);
-                timeHelper(1.1)
+                handleTime();
             })
             .catch((error) => {
                 console.error(error);
-                boundActiveView('/error');
+                timeHelper(1)
+                // boundActiveView('/error');
             });
-    }, [updateView])
+    })
 
     useInterval(() => {
         if (time >= 0) {

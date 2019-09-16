@@ -1,4 +1,4 @@
-import { ACTIVE_VIEW, STORE_VOUCHER, DISCARD_VOUCHER, ACTIVATE_VOUCHER, CHECK_VOUCHER, AUTHENTICATE } from "./actions";
+import { ACTIVE_VIEW, STORE_VOUCHER, DISCARD_VOUCHER, ACTIVATE_VOUCHER, AUTHENTICATE } from "./actions";
 
 export function reducer(state, { type, payload }) {
     switch (type) {

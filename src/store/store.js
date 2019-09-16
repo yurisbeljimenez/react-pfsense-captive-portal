@@ -3,7 +3,7 @@ import { reducer } from './reducer';
 
 const initialState = {
     voucher: '',
-    active_view: ''
+    active_view: '/progress'
 }
 
 export const store = createStore(

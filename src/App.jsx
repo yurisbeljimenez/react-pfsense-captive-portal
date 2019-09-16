@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy } from 'react';
 import Loading from './components/Loading';
 import AuthLoading from './components/AuthLoading';
 import { useSelector } from 'react-redux';
