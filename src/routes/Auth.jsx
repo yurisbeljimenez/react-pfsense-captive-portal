@@ -1,5 +1,6 @@
 import React from 'react';
-import { Cell, Grid, Row } from '@material/react-layout-grid';
+import { Cell, Grid, Row } from '../components/LayoutGrid';
+import { Headline1, Body1 } from "../components/Typography";
 import Form from '../components/Form';
 import Banner from '../components/Banner';
 
@@ -10,9 +11,9 @@ const Auth = () => {
             <Banner time={'30 minutes'} />
             <Grid>
                 <Row>
-                    <Cell columns={12}>
-                        <h1 className="text-center">Wifender</h1>
-                        <p className="text-center">Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</p>
+                    <Cell>
+                        <Headline1>Wifender</Headline1>
+                        <Body1>Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</Body1>
                         <Form />
                     </Cell>
                 </Row>

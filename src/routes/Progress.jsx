@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { activeView } from '../store/actions';
-import { Cell, Grid, Row } from '@material/react-layout-grid';
-import { Button } from '@material/react-button';
+import { Cell, Grid, Row } from '../components/LayoutGrid';
+import { Headline1, Body1 } from '../components/Typography';
+import { Button } from '../components/Button';
 import Progressbar from '../components/Progressbar'
 import Timer from '../components/Timer';
 import useInterval from '../hooks/useInterval';
@@ -74,12 +75,12 @@ const Progress = () => {
     return (
         <Grid>
             <Row>
-                <Cell columns={12}>
+                <Cell>
                     <Timer time={time} />
                     <Progressbar usage={usage} />
-                    <h1 className="text-center">Disconnection countdown</h1>
-                    <p className="text-center">Connection will be <b>terminated</b> when timer counts to zero!</p>
-                    <Button onClick={handleDisconnect} raised>Disconnect</Button>
+                    <Headline1>Disconnection countdown</Headline1>
+                    <Body1>Connection will be <b>terminated</b> when timer counts to zero!</Body1>
+                    <Button raised onClick={handleDisconnect}>Disconnect</Button>
                 </Cell>
             </Row>
         </Grid>

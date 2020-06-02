@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cell, Row } from '@material/react-layout-grid';
+import { Cell, Row } from '../components/LayoutGrid';
 
 const Timer = (props) => {
     const { time } = props;
@@ -36,7 +36,7 @@ const Timer = (props) => {
 
     return (
         <Row>
-            <Cell columns={12}>
+            <Cell>
                 {formatTime(time)}
             </Cell>
         </Row>

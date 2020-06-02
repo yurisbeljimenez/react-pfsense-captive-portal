@@ -1,11 +1,13 @@
-@import '@material/animation/variables';
+// To-Do: Re-Implement the animation.
+// @import '@material/animation/variables';
 
 .banner-enter-animation {
   position: relative;
   opacity: 1;
   transform: translateY(0);
-  animation: banner-enter-animation 175ms
-    $mdc-animation-standard-curve-timing-function;
+  // animation: banner-enter-animation 175ms
+  //   $mdc-animation-standard-curve-timing-function;
+  animation: banner-enter-animation 175ms ease-in-out;
   will-change: transform;
 }
 
