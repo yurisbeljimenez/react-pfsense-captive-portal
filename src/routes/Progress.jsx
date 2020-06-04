@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { activeView } from '../store/actions';
 import { Cell, Grid, Row } from '../components/LayoutGrid';
-import { Headline1, Body1 } from '../components/Typography';
+import { Headline4, Body1 } from '../components/Typography';
 import { Button } from '../components/Button';
 import Progressbar from '../components/Progressbar'
 import Timer from '../components/Timer';
@@ -78,7 +78,7 @@ const Progress = () => {
                 <Cell>
                     <Timer time={time} />
                     <Progressbar usage={usage} />
-                    <Headline1>Disconnection countdown</Headline1>
+                    <Headline4>Disconnection countdown</Headline4>
                     <Body1>Connection will be <b>terminated</b> when timer counts to zero!</Body1>
                     <Button raised onClick={handleDisconnect}>Disconnect</Button>
                 </Cell>

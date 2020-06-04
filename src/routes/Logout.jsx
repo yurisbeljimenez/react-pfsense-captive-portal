@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { activeView } from '../store/actions';
 import axios from 'axios';
 import { Cell, Grid, Row } from '../components/LayoutGrid';
-import { Headline1, Body1 } from "../components/Typography";
+import { Headline4, Body1 } from "../components/Typography";
 import { Button } from "../components/Button";
 import illustration from '../images/browsing_wifi.gif';
 
@@ -31,7 +31,7 @@ const Logout = () => {
             <Row>
                 <Cell>
                     <img src={illustration} alt="Navigation illustration" />
-                    <Headline1>Welcome back</Headline1>
+                    <Headline4>Welcome back</Headline4>
                     <Body1>Browse and get lost in the internet; come back here when you're
                     ready to walk away and end your session.</Body1>
                     <Button raised onClick={handleDisconnect}>Disconnect</Button>

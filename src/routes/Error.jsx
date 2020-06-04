@@ -4,6 +4,7 @@ import { activeView } from '../store/actions';
 import { Cell, Grid, Row } from '../components/LayoutGrid';
 import { Button } from '../components/Button';
 import illustration from '../images/no_internet_illustration.jpg';
+import { Headline4, Body1 } from '../components/Typography';
 
 
 const Error = () => {
@@ -15,8 +16,8 @@ const Error = () => {
             <Row>
                 <Cell>
                     <img src={illustration} alt="No internet ilustration" />
-                    <h1 className='text-center'>Oops, something <br />went wrong</h1>
-                    <p className="text-center">Try again, or check with the admin is this message keeps coming back.</p>
+                    <Headline4>Oops, something <br />went wrong</Headline4>
+                    <Body1>Try again, or check with the admin is this message keeps coming back.</Body1>
                     <Button raised onClick={boundActiveView}>Try Again</Button>
                 </Cell>
             </Row>

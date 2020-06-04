@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { activeView, storeVoucher } from '../store/actions';
-// import TextField, { Input } from '@material/react-text-field';
+import { TextField, Input } from '../components/TextField';
 import { Button } from '../components/Button';
 
 const Form = () => {
@@ -57,11 +57,10 @@ const Form = () => {
 
     return (
         <form ref={formReference} onSubmit={submitForm}>
-            {/* To-Do: Implement the textfield */}
-            {/* <TextField
+            <TextField
                 label='Username'
                 style={hideUserAuth}
-                outlined
+                filled
             ><Input
                     name="auth_user"
                     id="auth_user"
@@ -97,7 +96,7 @@ const Form = () => {
                     onChange={event => setAuthVoucher(event.target.value)} />
             </TextField>
             <Input name="redirurl" id="redirurl" type="hidden" value="$PORTAL_REDIRURL$" />
-            <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" /> */}
+            <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
 
             <Button type='submit' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Authenticate</Button>
             <Button type='button' onClick={checkVoucher} disabled={auth_voucher === ''} raised style={hideVoucher}>Check Voucher</Button>
