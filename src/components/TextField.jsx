@@ -37,5 +37,5 @@ export const TextField = ({ children, label, style, filled, outlined }) => {
 }
 
 export const Input = ({ name, id, type, style, required, disabled, value, onChange }) => {
-    return <input value={value} onChange={onChange} className="mdc-text-field__input" type={type} ariaLabelledBy="my-label-id" style={style} name={name} id={id} required={required} disabled={disabled} />
+    return <input value={value} onChange={onChange} className="mdc-text-field__input" type={type} aria-labelledby="my-label-id" style={style} name={name} id={id} required={required} disabled={disabled} />
 }

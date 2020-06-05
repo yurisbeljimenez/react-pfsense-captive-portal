@@ -43,6 +43,7 @@ const Form = () => {
     const checkVoucher = (e) => {
         e.preventDefault();
         let payload = new FormData(formReference.current);
+        console.log(payload)
         axios.post('$PORTAL_ACTION$', payload)
             .then(res => {
                 console.log('Response Data', res.data);
@@ -51,7 +52,8 @@ const Form = () => {
             })
             .catch((error) => {
                 console.error(error);
-                boundActiveView('/error');
+                setAuthVoucher('');
+                // boundActiveView('/error');
             })
     }
 
@@ -60,7 +62,7 @@ const Form = () => {
             <TextField
                 label='Username'
                 style={hideUserAuth}
-                filled
+                outlined
             ><Input
                     name="auth_user"
                     id="auth_user"
@@ -99,8 +101,8 @@ const Form = () => {
             <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
 
             <Button type='submit' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Authenticate</Button>
-            <Button type='button' onClick={checkVoucher} disabled={auth_voucher === ''} raised style={hideVoucher}>Check Voucher</Button>
-            <Button type='reset' onClick={resetForm} disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Reset form</Button>
+            <Button type='button' onClick={() => checkVoucher} disabled={auth_voucher === ''} raised style={hideVoucher}>Check Voucher</Button>
+            <Button type='reset' onClick={() => resetForm} disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Reset form</Button>
         </form>
     )
 }

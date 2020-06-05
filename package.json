@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/textfield": "^5.1.0",
     "@types/classnames": "^2.2.9",
     "@types/node": "^12.6.8",
     "@types/react": "^16.8.23",

@@ -27,9 +27,9 @@ const Logout = () => {
     }
 
     return (
-        <Grid>
+        <Grid maxWidth={450}>
             <Row>
-                <Cell>
+                <Cell phone={12} tablet={12} desktop={12}>
                     <img src={illustration} alt="Navigation illustration" />
                     <Headline4>Welcome back</Headline4>
                     <Body1>Browse and get lost in the internet; come back here when you're

@@ -73,9 +73,9 @@ const Progress = () => {
     }
 
     return (
-        <Grid>
+        <Grid maxWidth={450}>
             <Row>
-                <Cell>
+                <Cell phone={12} tablet={12} desktop={12}>
                     <Timer time={time} />
                     <Progressbar usage={usage} />
                     <Headline4>Disconnection countdown</Headline4>

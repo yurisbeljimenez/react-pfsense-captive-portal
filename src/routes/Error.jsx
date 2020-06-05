@@ -12,9 +12,9 @@ const Error = () => {
     const boundActiveView = () => dispatch(activeView(''));
 
     return (
-        <Grid>
+        <Grid maxWidth={450}>
             <Row>
-                <Cell>
+                <Cell phone={12} tablet={12} desktop={12}>
                     <img src={illustration} alt="No internet ilustration" />
                     <Headline4>Oops, something <br />went wrong</Headline4>
                     <Body1>Try again, or check with the admin is this message keeps coming back.</Body1>
