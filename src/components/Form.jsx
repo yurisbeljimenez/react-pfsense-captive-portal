@@ -43,7 +43,6 @@ const Form = () => {
     const checkVoucher = (e) => {
         e.preventDefault();
         let payload = new FormData(formReference.current);
-        console.log(payload)
         axios.post('$PORTAL_ACTION$', payload)
             .then(res => {
                 console.log('Response Data', res.data);
@@ -52,8 +51,7 @@ const Form = () => {
             })
             .catch((error) => {
                 console.error(error);
-                setAuthVoucher('');
-                // boundActiveView('/error');
+                boundActiveView('/error');
             })
     }
 

@@ -2,7 +2,8 @@ import { createStore } from 'redux';
 import { reducer } from './reducer';
 
 const initialState = {
-    voucher: '',
+    voucher: 'zxcvxzcvxcv',
+    timecredit: '5',
     active_view: '/',
 }
 

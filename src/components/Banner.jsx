@@ -5,8 +5,9 @@ import { Button } from '../components/Button'
 import { useSelector, useDispatch } from 'react-redux';
 import { DISCARD_VOUCHER, ACTIVATE_VOUCHER } from '../store/actions';
 
-const Banner = (props) => {
+const Banner = () => {
     const voucher = useSelector(state => state.voucher);
+    const timecredit = useSelector(state => state.timecredit)
     const dispatch = useDispatch();
 
 
@@ -15,7 +16,7 @@ const Banner = (props) => {
         <div className={classes}>
             <div className="banner-body">
                 <div className="text-content">
-                    <p>The voucher contains <b>{props.time}</b>. Would you like to use them?</p>
+                    <p>The voucher contains <b>{timecredit} minutes</b>. Would you like to use them?</p>
                 </div>
                 <div className="banner__actions">
                     <Button onClick={() => dispatch({ type: DISCARD_VOUCHER })}>continue as guest</Button>

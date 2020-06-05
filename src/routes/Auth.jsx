@@ -8,7 +8,7 @@ import Banner from '../components/Banner';
 const Auth = () => {
     return (
         <>
-            <Banner time={'30 minutes'} />
+            <Banner />
             <Grid maxWidth={450}>
                 <Row>
                     <Cell phone={12} tablet={12} desktop={12}>
