@@ -23,6 +23,7 @@
     "start": "export SASS_PATH=./node_modules && react-scripts start",
     "start-windows": "react-scripts start",
     "build": "export SASS_PATH=./node_modules && react-scripts build",
+    "bundle": "export SASS_PATH=./node_modules && react-scripts build && npx gulp",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -40,5 +41,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-inline-source": "^4.0.0",
+    "gulp-replace": "^1.0.0"
   }
 }
