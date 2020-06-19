@@ -35,7 +35,7 @@ const Timer = ({ time }) => {
 
     return (
         <Row>
-            <Cell>
+            <Cell phone={12} tablet={12} desktop={12}>
                 {formatTime(time)}
             </Cell>
         </Row>

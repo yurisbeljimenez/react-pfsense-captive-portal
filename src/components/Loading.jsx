@@ -1,10 +1,9 @@
 import React from 'react';
+import { Headline4 } from "../components/Typography";
 
 const Loading = () => {
     return (
-        <section className="loading">
-            <div className="loader"></div>
-        </section >
+        <Headline4>loading...</Headline4>
     )
 }
 

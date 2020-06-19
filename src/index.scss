@@ -27,7 +27,6 @@ img {
 
 .counter {
   font-size: 4.5rem;
-  font-size: 20vw;
   font-weight: 900;
   color: var(--mdc-theme-secondary);
 
@@ -35,7 +34,6 @@ img {
   .minutes::after,
   .seconds::after {
     font-size: 1.2rem;
-    font-size: 5vw;
     position: absolute;
     transform: translateY(1.25rem);
   }
