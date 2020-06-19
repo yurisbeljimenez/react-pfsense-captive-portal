@@ -29,10 +29,12 @@ const Logout = () => {
         <Grid maxWidth={450}>
             <Row>
                 <Cell phone={12} tablet={12} desktop={12}>
-                    <Headline4>Welcome back</Headline4>
-                    <Body1>Browse and get lost in the internet; come back here when you're
+                    <div className="text-center">
+                        <Headline4>Welcome back</Headline4>
+                        <Body1>Browse and get lost in the internet; come back here when you're
                     ready to walk away and end your session.</Body1>
-                    <Button raised onClick={handleDisconnect}>Disconnect</Button>
+                        <Button raised onClick={handleDisconnect}>Disconnect</Button>
+                    </div>
                 </Cell>
             </Row>
         </Grid>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as progressbar from 'progressbar.js';
 import useInterval from '../hooks/useInterval';
 
-const Progressbar = (props) => {
+const Progressbar = ({ usage }) => {
 
     const line = useRef(),
         reference = useRef(),
@@ -28,8 +28,8 @@ const Progressbar = (props) => {
     }, []);
 
     useInterval(() => {
-        if (props.usage > 0) {
-            line.current.animate(props.usage);
+        if (usage > 0) {
+            line.current.animate(usage);
         } else { return }
     }, 1000)
 

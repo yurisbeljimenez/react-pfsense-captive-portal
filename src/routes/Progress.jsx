@@ -46,7 +46,7 @@ const Progress = () => {
             })
             .catch((error) => {
                 console.error(error);
-                timeHelper(1.1)
+                timeHelper(15)
                 // boundActiveView('/error');
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,9 +78,11 @@ const Progress = () => {
                 <Cell phone={12} tablet={12} desktop={12}>
                     <Timer time={time} />
                     <Progressbar usage={usage} />
-                    <Headline4>Disconnection countdown</Headline4>
-                    <Body1>Connection will be <b>terminated</b> when timer counts to zero!</Body1>
-                    <Button raised onClick={handleDisconnect}>Disconnect</Button>
+                    <div className="text-center">
+                        <Headline4>Disconnection countdown</Headline4>
+                        <Body1>Connection will be <b>terminated</b> when timer counts to zero!</Body1>
+                        <Button raised onClick={handleDisconnect}>Disconnect</Button>
+                    </div>
                 </Cell>
             </Row>
         </Grid>

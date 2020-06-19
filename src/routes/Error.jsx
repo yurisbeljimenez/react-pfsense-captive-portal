@@ -14,9 +14,11 @@ const Error = () => {
         <Grid maxWidth={450}>
             <Row>
                 <Cell phone={12} tablet={12} desktop={12}>
-                    <Headline4>Oops, something <br />went wrong</Headline4>
-                    <Body1>Try again, or check with the admin is this message keeps coming back.</Body1>
-                    <Button raised onClick={boundActiveView}>Try Again</Button>
+                    <div className="text-center">
+                        <Headline4>Oops, something <br />went wrong</Headline4>
+                        <Body1>Try again, or check with the admin is this message keeps coming back.</Body1>
+                        <Button raised onClick={boundActiveView}>Try Again</Button>
+                    </div>
                 </Cell>
             </Row>
         </Grid>

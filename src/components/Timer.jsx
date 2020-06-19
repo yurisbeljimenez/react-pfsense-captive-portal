@@ -1,8 +1,7 @@
 import React from 'react';
 import { Cell, Row } from '../components/LayoutGrid';
 
-const Timer = (props) => {
-    const { time } = props;
+const Timer = ({ time }) => {
 
 
     const formatTime = (time) => {

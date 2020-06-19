@@ -1,3 +1,4 @@
+@import './scss/skeleton';
 @import './material-components-web.min.css';
 @import './scss/banner';
 @import './scss/banner-animations';
@@ -25,14 +26,16 @@ img {
 }
 
 .counter {
-  font-size: 5.2rem;
+  font-size: 4.5rem;
+  font-size: 20vw;
   font-weight: 900;
   color: var(--mdc-theme-secondary);
 
   .hours::after,
   .minutes::after,
   .seconds::after {
-    font-size: 2rem;
+    font-size: 1.2rem;
+    font-size: 5vw;
     position: absolute;
     transform: translateY(1.25rem);
   }

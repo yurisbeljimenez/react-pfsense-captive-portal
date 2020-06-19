@@ -12,8 +12,10 @@ const Auth = () => {
             <Grid maxWidth={450}>
                 <Row>
                     <Cell phone={12} tablet={12} desktop={12}>
-                        <Headline2>Wifender</Headline2>
-                        <Body1>Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</Body1>
+                        <div className="text-center">
+                            <Headline2>Wifender</Headline2>
+                            <Body1>Welcome to use our service; please input your <code>credentials/voucher</code> and click <b>Authenticate</b> to access the Internet.</Body1>
+                        </div>
                         <Form />
                     </Cell>
                 </Row>
