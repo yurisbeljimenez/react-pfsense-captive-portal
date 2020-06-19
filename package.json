@@ -20,10 +20,9 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
-    "start": "export SASS_PATH=./node_modules && react-scripts start",
-    "start-windows": "react-scripts start",
-    "build": "export SASS_PATH=./node_modules && react-scripts build",
-    "bundle": "export SASS_PATH=./node_modules && react-scripts build && npx gulp",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "bundle": "react-scripts build && npx gulp",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
