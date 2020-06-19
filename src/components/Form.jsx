@@ -1,7 +1,4 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { activeView, storeVoucher } from '../store/actions';
 import { TextField, Input } from '../components/TextField';
 import { Button } from '../components/Button';
 
@@ -11,7 +8,6 @@ const Form = () => {
     const [auth_pass, setAuthPass] = useState('');
     const [auth_voucher, setAuthVoucher] = useState('');
     const formReference = useRef(null);
-    const dispatch = useDispatch();
 
 
     const hideVoucher = auth_user || auth_pass ? { display: 'none' } : {};
@@ -24,39 +20,8 @@ const Form = () => {
         setAuthVoucher('');
     }
 
-    const boundActiveView = (view) => dispatch(activeView(view));
-    const boundStoreVoucher = (payload) => dispatch(storeVoucher(payload));
-
-    const submitForm = (e) => {
-        e.preventDefault();
-        let payload = new FormData(formReference.current);
-        axios.post('../server/check_voucher.php', payload)
-            .then(res => {
-                console.log('Response Data', res.data);
-            })
-            .catch((error) => {
-                console.error(error);
-                boundActiveView('/error');
-            })
-    }
-
-    const checkVoucher = (e) => {
-        e.preventDefault();
-        let payload = new FormData(formReference.current);
-        axios.post('$PORTAL_ACTION$', payload)
-            .then(res => {
-                console.log('Response Data', res.data);
-                boundStoreVoucher(auth_voucher);
-                setAuthVoucher('');
-            })
-            .catch((error) => {
-                console.error(error);
-                boundActiveView('/error');
-            })
-    }
-
     return (
-        <form ref={formReference} onSubmit={submitForm}>
+        <form ref={formReference} onSubmit={() => resetForm}>
             <TextField
                 label='Username'
                 style={hideUserAuth}
@@ -99,7 +64,7 @@ const Form = () => {
             <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
 
             <Button type='submit' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Authenticate</Button>
-            <Button type='button' onClick={() => checkVoucher} disabled={auth_voucher === ''} raised style={hideVoucher}>Check Voucher</Button>
+            <Button type='button' disabled={auth_voucher === ''} raised style={hideVoucher}>Check Voucher</Button>
             <Button type='reset' onClick={() => resetForm} disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Reset form</Button>
         </form>
     )

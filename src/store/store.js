@@ -1,14 +1,13 @@
 import { createStore } from 'redux';
-import { reducer } from './reducer';
+import rootReducer from './reducers';
 
 const initialState = {
-    voucher: 'add',
-    timecredit: '2',
+    voucher: '',
     active_view: '/',
 }
 
-export const store = createStore(
-    reducer,
+export default createStore(
+    rootReducer,
     initialState,
     window.devToolsExtension && window.devToolsExtension()
 )
