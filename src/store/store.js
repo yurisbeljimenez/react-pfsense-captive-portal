@@ -3,7 +3,7 @@ import rootReducer from './reducers';
 
 const initialState = {
     voucher: '',
-    active_view: '/',
+    active_view: '/progress',
 }
 
 export default createStore(

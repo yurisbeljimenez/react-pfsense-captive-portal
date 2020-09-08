@@ -11,8 +11,8 @@ const Progress = () => {
 
     const [time, setTime] = useState(0);
     const [usage, setUsage] = useState(0);
-    const [startTime, setStartTime] = useState(0);
-    const [future, setFuture] = useState(0);
+    const [startTime, setStartTime] = useState();
+    const [future, setFuture] = useState();
 
     const handleTime = (future) => {
         let now = Date.now();
@@ -21,7 +21,11 @@ const Progress = () => {
     }
 
     // TO-DO: Get the timer
-    useEffect(() => { }, [])
+    useEffect(() => {
+        // Tp-Do: Get the start time and the future from the server
+        setStartTime(Date.now())
+        setFuture(Date.now() + 10000)
+    }, [])
 
     useInterval(() => {
         if (time >= 0) {

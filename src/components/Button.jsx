@@ -8,7 +8,9 @@ export const Button = ({
     outlined,
     icon,
     leadingIcon,
-    trailingIcon
+    trailingIcon,
+    style,
+    onClick
 }) => {
     let classes = "mdc-button";
 
@@ -21,7 +23,7 @@ export const Button = ({
     }
 
     return (
-        <button type={type} className={classes}>
+        <button type={type} className={classes} style={style} onClick={onClick}>
             <div className="mdc-button__ripple" />
             {icon && leadingIcon ? (
                 <i className="material-icons mdc-button__icon" aria-hidden="true">

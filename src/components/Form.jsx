@@ -63,9 +63,9 @@ const Form = () => {
             <Input name="redirurl" id="redirurl" type="hidden" value="$PORTAL_REDIRURL$" />
             <Input name="zone" id="zone" type="hidden" value="$PORTAL_ZONE$" />
 
-            <Button type='submit' disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Authenticate</Button>
-            <Button type='button' disabled={auth_voucher === ''} raised style={hideVoucher}>Check Voucher</Button>
-            <Button type='reset' onClick={() => resetForm} disabled={auth_user === '' && auth_pass === '' && auth_voucher === ''} raised>Reset form</Button>
+            <Button type='submit' raised>Authenticate</Button>
+            <Button type='button' raised style={hideVoucher}>Check Voucher</Button>
+            <Button type='reset' onClick={resetForm} raised>Reset form</Button>
         </form>
     )
 }
